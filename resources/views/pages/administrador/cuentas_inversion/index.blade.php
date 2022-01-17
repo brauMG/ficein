@@ -41,7 +41,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered data-table">
                                     <thead class="text-primary thead-color">
-                                    <th>ID de cliente</th>
+                                    <th>Email del Cliente</th>
                                     <th>Nombre del cliente</th>
                                     <th>Divisa</th>
                                     <th>Mes</th>
@@ -51,7 +51,7 @@
                                     <tbody>
                                     @foreach ($cuentas_inversiones as $cuenta_inversion)
                                         <tr>
-                                            <td>{{$cuenta_inversion->client->id_client}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$cuenta_inversion->client->email}}<i class="material-icons plus">add_circle</i></td>
                                             <td>{{$cuenta_inversion->client->name}} {{$cuenta_inversion->client->last_name}}</td>
                                             <td>{{$cuenta_inversion->currency}}</td>
                                             <td>

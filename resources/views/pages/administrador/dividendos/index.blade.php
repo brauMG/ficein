@@ -41,7 +41,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered data-table">
                                     <thead class="text-primary thead-color">
-                                    <th>ID de cliente</th>
+                                    <th>Email del Cliente</th>
                                     <th>Nombre del cliente</th>
                                     <th>Mes</th>
                                     <th>Año</th>
@@ -50,7 +50,7 @@
                                     <tbody>
                                     @foreach ($dividendos as $dividendo)
                                         <tr>
-                                            <td>{{$dividendo->client->id_client}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$dividendo->client->email}}<i class="material-icons plus">add_circle</i></td>
                                             <td>{{$dividendo->client->name}} {{$dividendo->client->last_name}}</td>
                                             <td>
                                                 @if(date('m', strtotime($dividendo->date)) === '01')

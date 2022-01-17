@@ -12,7 +12,7 @@ class EstadosInversion extends Model
     protected $table = 'estados_de_cuenta_inversiones';
 
     protected $fillable = [
-        'id_client',
+        'email',
         'currency',
         'date',
         'file_pdf',
@@ -21,6 +21,6 @@ class EstadosInversion extends Model
     public $timestamps = true;
 
     public function client() {
-        return $this->belongsTo(User::class, 'id_client', 'id_client');
+        return $this->belongsTo(User::class, 'email', 'email');
     }
 }

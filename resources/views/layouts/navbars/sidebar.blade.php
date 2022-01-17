@@ -94,12 +94,31 @@
                     </div>
                 </li>
 
-                <li class="nav-item{{ $activePage == 'Contacto' ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ url('/administrador/contacto') }}">
-                        <i class="material-icons text-white">request_quote</i>
-                        <p>{{ __('Información de Contacto') }}</p>
+                <li class="nav-item {{ ($activePage == 'Contacto') ? ' active' : '' }}">
+                    <a class="nav-link collapsed" data-toggle="collapse" href="#informacion" aria-expanded="false">
+                        <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
+                        <p>{{ __('Contacto Ficein') }}
+                            <b class="caret"></b>
+                        </p>
                     </a>
+                    <div class="collapse" id="informacion">
+                        <ul class="nav">
+                            <li class="nav-item{{ $activePage == 'Visualizar Datos' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ url('/cliente/contacto') }}">
+                                    <i class="material-icons text-white">filter_list</i>
+                                    <span class="sidebar-normal">{{ __('Visualizar') }} </span>
+                                </a>
+                            </li>
+                            <li class="nav-item{{ $activePage == 'Modificar Datos' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ url('/administrador/contacto/modify') }}">
+                                    <i class="material-icons text-white">style</i>
+                                    <span class="sidebar-normal">{{ __('Modificar') }} </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+
                 @endif
 
                 @if(Auth::user()->type == 1)

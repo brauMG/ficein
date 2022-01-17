@@ -12,13 +12,6 @@
                         <form action="{{route('AgregarCliente')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-6" id="id_client_field">
-                                    <label for="inputPassword4">ID de Cliente</label>
-                                    <input type="number" min="0" class="form-control" id="id_client" name="id_client" value="{{ old('id_client') }}" required>
-                                    @error('id_client')
-                                    <span class="text-danger mt-1">{{ $message }}</span>
-                                    @enderror
-                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Nombres</label>
                                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UsersImport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsuariosController extends Controller
 {
@@ -42,7 +45,6 @@ class UsuariosController extends Controller
     public function store_client(Request $request)
     {
         $attributes = request()->validate([
-            'id_client' => 'required|unique:users,id_client',
             'name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email',
@@ -50,8 +52,7 @@ class UsuariosController extends Controller
 
         $password = bcrypt(Str::random(35));
 
-        User::create([
-            'id_client' => $attributes['id_client'],
+        $user_data = User::create([
             'name' => $attributes['name'],
             'last_name' => $attributes['last_name'],
             'email' => $attributes['email'],
@@ -60,7 +61,9 @@ class UsuariosController extends Controller
             'type' => 1,
         ]);
 
-        return redirect('/administrador/usuarios')->with('message', 'Administrador añadido correctamente');
+        Password::sendResetLink($request->only(['email']));
+
+        return redirect('/administrador/usuarios')->with('message', 'Usuario añadido correctamente');
     }
 
     public function store_admin(Request $request)
@@ -113,5 +116,16 @@ class UsuariosController extends Controller
         User::where('id', $id)->delete();
 
         return redirect('/administrador/usuarios')->with('message', 'Usuario eliminado correctamente');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $campaign_id = $request->campaign;
+        $created_by_id = Auth::user()->id;
+        $assigned_user_id = Auth::user()->id;
+        $company_id = Auth::user()->company_id;
+        Excel::import(new UsersImport($campaign_id, $created_by_id, $assigned_user_id, $company_id), $file);
+        return back()->with('flash_message', 'Importación de contactos realizada');
     }
 }

@@ -12,7 +12,7 @@ class Facturacion extends Model
     protected $table = 'facturaciones';
 
     protected $fillable = [
-        'id_client',
+        'email',
         'contract_name',
         'date',
         'file_pdf',
@@ -22,6 +22,6 @@ class Facturacion extends Model
     public $timestamps = true;
 
     public function client() {
-        return $this->belongsTo(User::class, 'id_client', 'id_client');
+        return $this->belongsTo(User::class, 'email', 'email');
     }
 }

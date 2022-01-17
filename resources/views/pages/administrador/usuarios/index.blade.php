@@ -2,7 +2,40 @@
 
 @section('content')
     <div class="content">
-        <div class="container-fluid">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background-color: #222">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-body">
+                    <div class="e-loadholder">
+                        <div class="m-loader">
+                            <span class="e-text" style="font-size: 80%">Procesando</span>
+                        </div>
+                    </div>
+                    <div id="particleCanvas-Blue"></div>
+                    <div id="particleCanvas-White"></div>
+                </div>
+                <div class="container" style="position: absolute; text-align: center; bottom: 0; text-transform: uppercase">
+                    <span class="e-text" style="font-size: 80%; color: white">Importando tabla de usuarios y enviando correos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" id="principal">
+
+            <form method="POST" action="{{ url('/administrador/usuarios/importar') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
+                <div class="row" style="width: 75%">
+                    <div class="col-sm-6">
+                        <span style="display: block; padding-left: 0.5%; padding-bottom: 0.5%">Archivo</span>
+                        <input onchange="allow()" class="form-control" type="file" name="file" data-toggle="tooltip" data-placement="right" title="Selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellido Paterno, Apellido Materno, Correo, Telefono" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-warning btn-sm" title="Importar Contactos" style="margin-left: 5px !important;" id="submit-file" data-toggle="modal" data-target="#exampleModalCenter" disabled>
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i> Importar Usuarios de Excel
+                </button>
+            </form>
+
             @if(\Illuminate\Support\Facades\Session::has('message'))
                 <div class="alert alert-success" role="alert">
                     {{\Illuminate\Support\Facades\Session::get('message')}}
@@ -23,7 +56,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered data-table">
                                     <thead class="text-primary thead-color">
-                                    <th>ID de Cliente</th>
+                                    <th>Email del Cliente</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
                                     <th>Correos</th>
@@ -32,7 +65,7 @@
                                     <tbody>
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td>{{$user->id_client}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$user->email}}<i class="material-icons plus">add_circle</i></td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->last_name}}</td>
                                             <td>{{$user->email}}</td>
@@ -57,6 +90,7 @@
     </div>
 
     <script>
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
@@ -165,6 +199,11 @@
                     $('#myModal').modal('show');
                 }
             } );
+        }
+
+        function allow() {
+            let submit_btn = document.getElementById('submit-file');
+            submit_btn.removeAttribute('disabled');
         }
     </script>
 @endsection

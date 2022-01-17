@@ -33,7 +33,7 @@ class CuentasInversionesController extends Controller
     }
 
     public function index_cliente() {
-        $cuentas_inversiones = EstadosInversion::where('id_client', Auth::user()->id_client)->get();
+        $cuentas_inversiones = EstadosInversion::where('email', Auth::user()->email)->get();
 
         return view('pages.cliente.cuentas_inversion.index', compact('cuentas_inversiones'));
 
@@ -50,8 +50,8 @@ class CuentasInversionesController extends Controller
 
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
-                $data = explode('_', $filename, 5);
-                $id_client = $data[0];
+                $data = explode(';', $filename, 5);
+                $email = $data[0];
                 $currency = $data[1];
                 $day = $data[2];
                 $month = $data[3];
@@ -62,7 +62,7 @@ class CuentasInversionesController extends Controller
 
                 if ($record_exist === null) {
                     EstadosInversion::create([
-                        'id_client' => $id_client,
+                        'email' => $email,
                         'currency' => $currency,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
@@ -77,7 +77,7 @@ class CuentasInversionesController extends Controller
     public function pdf_auth($file) {
         $file = EstadosInversion::where('id', $file)->first();
 
-        if(Auth::user()->id_client === $file->client->id_client || Auth::user()->type === 0) {
+        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
         }else{
             return abort('403');

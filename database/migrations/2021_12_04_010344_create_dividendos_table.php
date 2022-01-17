@@ -15,12 +15,12 @@ class CreateDividendosTable extends Migration
     {
         Schema::create('dividendos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_client');
+            $table->string('email');
             $table->date('date');
             $table->string('file_pdf');
             $table->timestamps();
 
-            $table->foreign('id_client')->references('id_client')->on('users');
+            $table->foreign('email')->references('email')->on('users');
         });
     }
 

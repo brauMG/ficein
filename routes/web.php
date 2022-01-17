@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -35,11 +36,16 @@ Route::group(['middleware' => 'auth', 'admin'], function () {
     Route::get('/administrador/usuarios',[UsuariosController::class, 'index']);
     Route::get('/administrador/usuarios/nuevo',[UsuariosController::class, 'create']);
     Route::get('/administrador/usuarios/modificar/{id}',[UsuariosController::class, 'edit']);
-    Route::get('/administrador/usuarios/eliminar/{id}',[UsuariosController::class, 'prepare']);
+    Route::get('/administrador/usuarios/eliminar/{id}',[UsuariosController::class, 'delete']);
     Route::post('/administrador/usuarios/agregarCliente',[UsuariosController::class, 'store_client'])->name('AgregarCliente');
     Route::post('/administrador/usuarios/agregarAdministrador',[UsuariosController::class, 'store_admin'])->name('AgregarAdministrador');
     Route::put('/administrador/usuarios/actualizarCliente/{id}',[UsuariosController::class, 'update'])->name('ActualizarCliente');
     Route::post('/administrador/usuarios/eliminarCliente/{id}',[UsuariosController::class, 'delete'])->name('EliminarCliente');
+    Route::post('/administrador/usuarios/importar',[UsuariosController::class, 'import']);
+
+    // informacion de contacto
+    Route::get('/administrador/contacto/modify',[ContactoController::class, 'modify'])->name('modificar_contacto');
+    Route::put('/administrador/contacto/modify/{id}',[ContactoController::class, 'update'])->name('actualizar_contacto');
 
     // facturas
     Route::get('/administrador/facturas',[FacturasController::class, 'index']);
@@ -93,5 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
     // intereses
     Route::get('/cliente/intereses',[InteresesController::class, 'index_cliente']);
     Route::get('/cliente/intereses/pdf/download/{file}',[InteresesController::class, 'pdf_auth']);
+
+    // informacion de contacto
+    Route::get('/cliente/contacto',[ContactoController::class, 'index']);
 });
 

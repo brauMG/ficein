@@ -34,7 +34,7 @@ class ConstanciasInversionesController extends Controller
     }
 
     public function index_cliente() {
-        $constancias_inversiones = ContanciaInversion::where('id_client', Auth::user()->id_client)->get();
+        $constancias_inversiones = ContanciaInversion::where('email', Auth::user()->email)->get();
 
         return view('pages.cliente.constancias_inversion.index', compact('constancias_inversiones'));
 
@@ -51,8 +51,8 @@ class ConstanciasInversionesController extends Controller
 
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
-                $data = explode('_', $filename, 6);
-                $id_client = $data[0];
+                $data = explode(';', $filename, 6);
+                $email = $data[0];
                 $operation_number = $data[1];
                 if ($data[2] === 'R') {
                     $type = 'Renovación ';
@@ -69,7 +69,7 @@ class ConstanciasInversionesController extends Controller
 
                 if ($record_exist === null) {
                     ContanciaInversion::create([
-                        'id_client' => $id_client,
+                        'email' => $email,
                         'operation_number' => $operation_number,
                         'type' => $type,
                         'date' => $year . '-' . $month . '-' . $day,
@@ -85,7 +85,7 @@ class ConstanciasInversionesController extends Controller
     public function pdf_auth($file) {
         $file = ContanciaInversion::where('id', $file)->first();
 
-        if(Auth::user()->id_client === $file->client->id_client || Auth::user()->type === 0) {
+        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
         }else{
             return abort('403');

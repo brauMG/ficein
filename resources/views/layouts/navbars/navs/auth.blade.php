@@ -17,19 +17,11 @@
                         <i class="material-icons">home</i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="copyLink()">
-                        <i class="material-icons">content_copy</i>
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
                         <i class="material-icons">settings</i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="#" onclick="copyLink()">{{ __('Copiar mi link de Ficein') }}</a>
-                        <a class="dropdown-item" href="{{ url('/my_subs') }}">{{ __('Suscripción') }}</a>
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
                     </div>
                 </li>

@@ -41,7 +41,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered data-table">
                                     <thead class="text-primary thead-color">
-                                    <th>ID de cliente</th>
+                                    <th>Email del Cliente</th>
                                     <th>Nombre del cliente</th>
                                     <th>Num. de Operación</th>
                                     <th>Tipo</th>
@@ -52,7 +52,7 @@
                                     <tbody>
                                     @foreach ($constancias_inversiones as $constancia)
                                         <tr>
-                                            <td>{{$constancia->client->id_client}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$constancia->client->email}}<i class="material-icons plus">add_circle</i></td>
                                             <td>{{$constancia->client->name}} {{$constancia->client->last_name}}</td>
                                             <td>{{$constancia->operation_number}}</td>
                                             <td>{{$constancia->type}}</td>

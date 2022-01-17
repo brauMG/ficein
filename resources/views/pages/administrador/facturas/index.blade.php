@@ -41,7 +41,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered data-table">
                                     <thead class="text-primary thead-color">
-                                    <th>ID de cliente</th>
+                                    <th>Email del Cliente</th>
                                     <th>Nombre del cliente</th>
                                     <th>Contrato</th>
                                     <th>Día</th>
@@ -52,7 +52,7 @@
                                     <tbody>
                                     @foreach ($facturas as $factura)
                                         <tr>
-                                            <td>{{$factura->client->id_client}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$factura->client->email}}<i class="material-icons plus">add_circle</i></td>
                                             <td>{{$factura->client->name}} {{$factura->client->last_name}}</td>
                                             <td>{{$factura->contract_name}}</td>
                                             <td>{{date('d', strtotime($factura->date))}}</td>
@@ -88,9 +88,11 @@
                                                 <a href="{{ url('/cliente/facturas/pdf/download/' . $factura->id) }}" rel="tooltip" class="btn btn-sm btn-warning btn-adjust">
                                                     PDF <i class="material-icons">file_download</i>
                                                 </a>
+                                                @if($factura->file_xml != null)
                                                 <a href="{{ url('/cliente/facturas/xml/download/' . $factura->id) }}" rel="tooltip" class="btn btn-sm btn-warning btn-adjust">
                                                     XML <i class="material-icons">file_download</i>
                                                 </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

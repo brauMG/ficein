@@ -15,14 +15,14 @@ class CreateContanciaInversionsTable extends Migration
     {
         Schema::create('constacias_de_inversion', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_client');
+            $table->string('email');
             $table->integer('operation_number');
             $table->string('type');
             $table->date('date');
             $table->string('file_pdf');
             $table->timestamps();
 
-            $table->foreign('id_client')->references('id_client')->on('users');
+            $table->foreign('email')->references('email')->on('users');
         });
     }
 

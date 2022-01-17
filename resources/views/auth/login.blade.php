@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container" style="height: auto;">
+        @if(session('status'))
+            <div class="alert alert-success" role="alert">
+                {{session('status')}}
+            </div>
+        @endif
         <div class="row align-items-center">
             <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
                 <h3>{{ __('Description text, just log in.') }} </h3>
@@ -30,9 +35,9 @@
                             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">email</i>
-                  </span>
+                                      <span class="input-group-text">
+                                        <i class="material-icons">email</i>
+                                      </span>
                                     </div>
                                     <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email', 'braulio@firefish.com.mx') }}" required>
                                 </div>
@@ -45,9 +50,9 @@
                             <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">lock_outline</i>
-                  </span>
+                                      <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                      </span>
                                     </div>
                                     <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? "secret" : "" }}" required>
                                 </div>
@@ -61,8 +66,8 @@
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
                                     <span class="form-check-sign">
-                  <span class="check"></span>
-                </span>
+                                      <span class="check"></span>
+                                    </span>
                                 </label>
                             </div>
                         </div>

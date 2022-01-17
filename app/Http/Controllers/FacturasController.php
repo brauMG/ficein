@@ -33,7 +33,7 @@ class FacturasController extends Controller
 
     public function index_cliente() {
 
-        $facturas = Facturacion::where('id_client', Auth::user()->id_client)->get();
+        $facturas = Facturacion::where('email', Auth::user()->email)->get();
 
         return view('pages.cliente.facturas.index', compact('facturas'));
 
@@ -50,8 +50,8 @@ class FacturasController extends Controller
 
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
-                $data = explode('_', $filename, 5);
-                $id_client = $data[0];
+                $data = explode(';', $filename, 5);
+                $email = $data[0];
                 $contract_name = $data[1];
                 $day = $data[2];
                 $month = $data[3];
@@ -66,7 +66,7 @@ class FacturasController extends Controller
 
                 if ($record_exist === null) {
                     Facturacion::create([
-                        'id_client' => $id_client,
+                        'email' => $email,
                         'contract_name' => $contract_name,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
@@ -82,7 +82,7 @@ class FacturasController extends Controller
     public function pdf_auth($file) {
         $file = Facturacion::where('id', $file)->first();
 
-        if(Auth::user()->id_client === $file->client->id_client || Auth::user()->type === 0) {
+        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
         }else{
             return abort('403');
@@ -92,7 +92,7 @@ class FacturasController extends Controller
     public function xml_auth($file) {
         $file = Facturacion::where('id', $file)->first();
 
-        if(Auth::user()->id_client === $file->client->id_client || Auth::user()->type === 0) {
+        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_xml);
         }else{
             return abort('403');

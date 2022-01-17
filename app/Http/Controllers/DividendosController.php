@@ -35,7 +35,7 @@ class DividendosController extends Controller
     }
 
     public function index_cliente() {
-        $dividendos = Dividendos::where('id_client', Auth::user()->id_client)->get();
+        $dividendos = Dividendos::where('email', Auth::user()->email)->get();
 
         return view('pages.cliente.dividendos.index', compact('dividendos'));
 
@@ -52,8 +52,8 @@ class DividendosController extends Controller
 
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
-                $data = explode('_', $filename, 4);
-                $id_client = $data[0];
+                $data = explode(';', $filename, 4);
+                $email = $data[0];
                 $day = $data[1];
                 $month = $data[2];
                 $year = $data[3];
@@ -63,7 +63,7 @@ class DividendosController extends Controller
 
                 if ($record_exist === null) {
                     Dividendos::create([
-                        'id_client' => $id_client,
+                        'email' => $email,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
                     ]);
@@ -77,7 +77,7 @@ class DividendosController extends Controller
     public function pdf_auth($file) {
         $file = Dividendos::where('id', $file)->first();
 
-        if(Auth::user()->id_client === $file->client->id_client || Auth::user()->type === 0) {
+        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
         }else{
             return abort('403');

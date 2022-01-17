@@ -26,7 +26,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'id_client' => '00001',
             'name' => 'User 1',
             'last_name' => 'From Test',
             'email' => 'user1@test.com',
@@ -38,7 +37,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'id_client' => '00002',
             'name' => 'User 2',
             'last_name' => 'From Test',
             'email' => 'user2@test.com',
@@ -50,7 +48,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'id_client' => '00003',
             'name' => 'User 3',
             'last_name' => 'From Test',
             'email' => 'user3@test.com',
@@ -62,7 +59,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'id_client' => '00004',
             'name' => 'User 4',
             'last_name' => 'From Test',
             'email' => 'user4@test.com',
@@ -74,7 +70,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'id_client' => '00005',
             'name' => 'User 5',
             'last_name' => 'From Test',
             'email' => 'user5@test.com',

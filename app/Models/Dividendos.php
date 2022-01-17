@@ -12,7 +12,7 @@ class Dividendos extends Model
     protected $table = 'dividendos';
 
     protected $fillable = [
-        'id_client',
+        'email',
         'date',
         'file_pdf',
     ];
@@ -20,6 +20,6 @@ class Dividendos extends Model
     public $timestamps = true;
 
     public function client() {
-        return $this->belongsTo(User::class, 'id_client', 'id_client');
+        return $this->belongsTo(User::class, 'email', 'email');
     }
 }

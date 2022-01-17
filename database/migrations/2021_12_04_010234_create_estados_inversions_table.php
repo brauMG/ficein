@@ -15,13 +15,13 @@ class CreateEstadosInversionsTable extends Migration
     {
         Schema::create('estados_de_cuenta_inversiones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_client');
+            $table->string('email');
             $table->string('currency');
             $table->date('date');
             $table->string('file_pdf');
             $table->timestamps();
 
-            $table->foreign('id_client')->references('id_client')->on('users');
+            $table->foreign('email')->references('email')->on('users');
         });
     }
 

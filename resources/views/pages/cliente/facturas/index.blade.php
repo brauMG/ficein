@@ -63,9 +63,11 @@
                                                 <a href="{{ url('/cliente/facturas/pdf/download/' . $factura->id) }}" rel="tooltip" class="btn btn-sm btn-warning btn-adjust">
                                                     PDF <i class="material-icons">file_download</i>
                                                 </a>
-                                                <a href="{{ url('/cliente/facturas/xml/download/' . $factura->id) }}" rel="tooltip" class="btn btn-sm btn-warning btn-adjust">
-                                                    XML <i class="material-icons">file_download</i>
-                                                </a>
+                                                @if($factura->file_xml != null)
+                                                    <a href="{{ url('/cliente/facturas/xml/download/' . $factura->id) }}" rel="tooltip" class="btn btn-sm btn-warning btn-adjust">
+                                                        XML <i class="material-icons">file_download</i>
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
