@@ -1,94 +1,75 @@
 @extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('Ficein')])
 
 @section('content')
-    <div class="container" style="height: auto;">
+    <div class="container" style="height: auto; margin-top: 5%;">
         @if(session('status'))
             <div class="alert alert-success" role="alert">
                 {{session('status')}}
             </div>
         @endif
         <div class="row align-items-center">
-            <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
-                <h3>{{ __('Description text, just log in.') }} </h3>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-                <form class="form" method="POST" action="{{ route('login') }}">
-                    @csrf
-
-                    <div class="card card-login card-hidden mb-3">
-                        <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
-                            <div class="social-line">
-                                <a href="#" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-description text-center">{{ __('Or Sign in with ') }} <strong>braulio@firefish.com.mx</strong> {{ __(' and the password ') }}<strong>secret</strong> </p>
-                            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
+            <div class="row col-10 justify-content-center m-auto">
+                <div class="col-5 p-0 hide-logo-login" style="z-index: 9;">
+                    <img src="{{ asset('material') }}/img/fondo.png" style="width: inherit; height: 400px;  border-radius:10px 0 0 10px; filter: contrast(0.9)">
+                </div>
+                <div class="col-5 p-0 full-login">
+                    <form class="form" method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="card card-login card-hidden m-0 full-radius" style="margin-left: -1px !important; border-radius:0 10px 10px 0; height: 400px !important;">
+                            <div class="card-body mt-4">
+                                <h4 style="font-weight: 500" class="text-center ficein-color">Iniciar Sesión</h4>
+                                <p class="card-description text-center"><strong>{{ __('Debes estar registrado para iniciar sesión') }}</strong></p>
+                                <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
                                       <span class="input-group-text">
                                         <i class="material-icons">email</i>
                                       </span>
+                                        </div>
+                                        <input type="email" name="email" class="form-control" placeholder="{{ __('Correo Eléctronico') }}" value="{{ old('email') }}" required>
                                     </div>
-                                    <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email', 'braulio@firefish.com.mx') }}" required>
+                                    @if ($errors->has('email'))
+                                        <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </div>
+                                    @endif
                                 </div>
-                                @if ($errors->has('email'))
-                                    <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
+                                <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
                                       <span class="input-group-text">
                                         <i class="material-icons">lock_outline</i>
                                       </span>
+                                        </div>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Contraseña') }}" value="{{ old('password') }}" required>
                                     </div>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? "secret" : "" }}" required>
+                                    @if ($errors->has('password'))
+                                        <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </div>
+                                    @endif
                                 </div>
-                                @if ($errors->has('password'))
-                                    <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                <div class="container text-center">
+                                    <button type="submit" class="btn btn-ficein btn-sm mt-3" style="padding: 0.40625rem 4.50rem">{{ __('Ingresar') }}</button>
+                                    <div class="form-check mt-3 text-left" style="margin-left: 7px">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuerdame') }}
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="form-check mr-auto ml-3 mt-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
-                                    <span class="form-check-sign">
-                                      <span class="check"></span>
-                                    </span>
-                                </label>
+                                    @if (Route::has('password.request'))
+                                        <div class="form-check mt-3 text-left">
+                                            <a href="{{ route('password.request') }}" class="ficein-color text-left">
+                                                <span>{{ __('Restablecer mi contraseña.') }}</span>
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
-                        </div>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-6">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-light">
-                                <small>{{ __('Forgot password?') }}</small>
-                            </a>
-                        @endif
-                    </div>
-                    <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-light">
-                            <small>{{ __('Create new account') }}</small>
-                        </a>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
