@@ -184,7 +184,7 @@
                             </div>
                         </li>
 
-                        <li class="nav-item{{ $activePage == 'Contacto' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'Visualizar Datos' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ url('/cliente/contacto') }}">
                                 <i class="material-icons text-white">contact_support</i>
                                 <p>{{ __('Información de Contacto') }}</p>

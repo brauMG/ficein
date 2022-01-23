@@ -366,6 +366,26 @@
     padding: 1% !important;
 }
 
+.own-form-2 {
+    background-color: whitesmoke !important;
+    border-radius: 12px !important;
+    border: solid !important;
+    border-width: 0.5px !important;
+    border-color: #d8d8d8 !important;
+    padding: 2% !important;
+}
+
+.own-label {
+    top: -18px !important;
+    left: 6px !important;
+}
+
+.adjust-form-row {
+    margin-top: 2%;
+}
+
+
+
 table {
     border: solid;
     border-width: 1.5px !important;

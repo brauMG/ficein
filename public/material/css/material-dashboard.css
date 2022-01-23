@@ -417,8 +417,8 @@ template {
   .table th {
     background-color: #fff !important;
   }
-  .table-bordered th,
-  .table-bordered td {
+  . th,
+  . td {
     border: 1px solid #ddd !important;
   }
 }
@@ -1892,17 +1892,17 @@ pre code {
   padding: 0.3rem;
 }
 
-.table-bordered {
+. {
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.table-bordered th,
-.table-bordered td {
+. th,
+. td {
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.table-bordered thead th,
-.table-bordered thead td {
+. thead th,
+. thead td {
   border-bottom-width: 2px;
 }
 
@@ -2072,7 +2072,7 @@ pre code {
   border-color: #32383e;
 }
 
-.table-dark.table-bordered {
+.table-dark. {
   border: 0;
 }
 
@@ -2092,7 +2092,7 @@ pre code {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
-  .table-responsive-sm>.table-bordered {
+  .table-responsive-sm>. {
     border: 0;
   }
 }
@@ -2105,7 +2105,7 @@ pre code {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
-  .table-responsive-md>.table-bordered {
+  .table-responsive-md>. {
     border: 0;
   }
 }
@@ -2118,7 +2118,7 @@ pre code {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
-  .table-responsive-lg>.table-bordered {
+  .table-responsive-lg>. {
     border: 0;
   }
 }
@@ -2131,7 +2131,7 @@ pre code {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
-  .table-responsive-xl>.table-bordered {
+  .table-responsive-xl>. {
     border: 0;
   }
 }
@@ -2144,7 +2144,7 @@ pre code {
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.table-responsive>.table-bordered {
+.table-responsive>. {
   border: 0;
 }
 
@@ -11517,7 +11517,7 @@ fieldset[disabled][disabled] .form-control,
 
 .is-focused [class^='bmd-label'],
 .is-focused [class*=' bmd-label'] {
-  color: #9c27b0;
+  color: #3961ab;
 }
 
 .is-focused .bmd-label-placeholder {
@@ -14793,7 +14793,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar[data-color="azure"] li.active>a {
   background-color: #3961ab;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar[data-color="green"] li.active>a {

@@ -21,20 +21,35 @@
         </div>
 
         <div class="container-fluid" id="principal">
-
-            <form method="POST" action="{{ url('/administrador/usuarios/importar') }}" accept-charset="UTF-8" enctype="multipart/form-data">
-                {{ csrf_field() }}
-
-                <div class="row" style="width: 75%">
-                    <div class="col-sm-6">
-                        <span style="display: block; padding-left: 0.5%; padding-bottom: 0.5%">Archivo</span>
-                        <input onchange="allow()" class="form-control" type="file" name="file" data-toggle="tooltip" data-placement="right" title="Selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellido Paterno, Apellido Materno, Correo, Telefono" required>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="container message-box bg-danger">
+                        <h6 class="own-card-title">Importar Usuarios</h6>
+                        <p class="own-category">Para importar usuarios, selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellido Paterno, Apellido Materno, Correo, Telefono.</p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-warning btn-sm" title="Importar Contactos" style="margin-left: 5px !important;" id="submit-file" data-toggle="modal" data-target="#exampleModalCenter" disabled>
-                    <i class="fa fa-file-excel-o" aria-hidden="true"></i> Importar Usuarios de Excel
-                </button>
-            </form>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <div class="container message-box bg-transparent">
+                        <form method="POST" action="{{ url('/administrador/usuarios/importar') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="form-row">
+                                <div class="form-group col-md-10">
+                                    <label class="own-category ficein-color font-weight-bold">Archivo</label>
+                                    <input style="opacity: 1 !important; position: initial !important; height: auto" onchange="allow()" class="form-control" type="file" name="file" required>
+                                    <small id="emailHelp" class="form-text text-muted">Asegurate de validar que el archivo sea correcto.</small>
+                                </div>
+                                <div class="form-group col-md-2 mt-1">
+                                    <button type="submit" class="btn btn-action btn-info" title="Importar Contactos" style="margin-left: 5px !important;" id="submit-file" data-toggle="modal" data-target="#exampleModalCenter" disabled>
+                                        Procesar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             @if(\Illuminate\Support\Facades\Session::has('message'))
                 <div class="alert alert-success" role="alert">
@@ -43,18 +58,18 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
+                    <div class="card bg-transparent own-card">
+                        <div class="card-header card-header-primary m-0">
                             <div style="display: flex; flex-wrap: wrap">
                                 <div class="col-md-8">
                                     <h4 class="card-title ">Lista de Usuarios</h4>
-                                    <a href="{{ url('/administrador/usuarios/nuevo') }}" class="btn btn-info" id="new">Añadir nuevo usuario <i class="material-icons">add_circle_outline</i></a>
+                                    <a href="{{ url('/administrador/usuarios/nuevo') }}" class="btn btn-secondary font-weight-bold" id="new">Añadir nuevo usuario <i class="material-icons">add_circle_outline</i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered data-table">
+                                <table class="table table-striped data-table">
                                     <thead class="text-primary thead-color">
                                     <th>Email del Cliente</th>
                                     <th>Nombres</th>
@@ -115,7 +130,7 @@
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
+                        "sSearch": "Buscador",
                         "sUrl": "",
                         "sInfoThousands": ",",
                         "sLoadingRecords": "Cargando...",
@@ -161,7 +176,7 @@
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
+                        "sSearch": "Buscador",
                         "sUrl": "",
                         "sInfoThousands": ",",
                         "sLoadingRecords": "Cargando...",

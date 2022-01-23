@@ -8,17 +8,17 @@
                     {{\Illuminate\Support\Facades\Session::get('message')}}
                 </div>
             @endif
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-transparent own-card">
+                            <div class="card-header card-header-primary m-0">
                             <div style="display: flex; flex-wrap: wrap">
-                                <h4 class="card-title ">Mis Estados de Cuenta de Créditos</h4>
+                                <h4 class="card-title ">Mis Estados de Cuenta - Créditos</h4>
                             </div>
                         </div>
                         <div class="card-body" id="clients_body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered data-table">
+                                <table class="table table-striped  data-table">
                                     <thead class="text-primary thead-color">
                                     <th>Mes</th>
                                     <th>Año</th>
@@ -97,7 +97,7 @@
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
+                        "sSearch": "Buscador",
                         "sUrl": "",
                         "sInfoThousands": ",",
                         "sLoadingRecords": "Cargando...",
@@ -143,7 +143,7 @@
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
+                        "sSearch": "Buscador",
                         "sUrl": "",
                         "sInfoThousands": ",",
                         "sLoadingRecords": "Cargando...",

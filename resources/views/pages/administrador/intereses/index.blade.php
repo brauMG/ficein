@@ -8,38 +8,44 @@
                     {{\Illuminate\Support\Facades\Session::get('message')}}
                 </div>
             @endif
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-danger">
-                            <h4 class="card-title">Verificar Intereses</h4>
-                            <p class="category">Si has añadido nuevos archivos por medio de FTP, selecciona la fecha que corresponde a la carpeta donde las guardaste y posteriormente presiona "Verificar" para vincular las cuentas a los usuarios.</p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="container message-box bg-danger">
+                            <h6 class="own-card-title">Verificar Intereses</h6>
+                            <p class="own-category">Si has añadido nuevas facturas por medio de FTP, selecciona la fecha que corresponde a la carpeta donde las guardaste y posteriormente presiona "Verificar" para vincularlas a los usuarios.</p>
                         </div>
-                        <div class="card-body">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-8">
+                        <div class="container message-box bg-transparent">
                             <form action="{{route('verificar_intereses')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Fecha de la carpeta:</label>
-                                    <input type="date" class="form-control" name="date" id="date" aria-describedby="date" required>
-                                    <small id="emailHelp" class="form-text text-muted">Asegurate de validar que sea la carpeta correcta.</small>
+                                <div class="form-row">
+                                    <div class="form-group col-md-10">
+                                        <label class="own-category ficein-color font-weight-bold" for="exampleInputEmail1">Fecha de la carpeta:</label>
+                                        <input type="date" class="form-control own-form" name="date" id="date" aria-describedby="date" required>
+                                        <small id="emailHelp" class="form-text text-muted">Asegurate de validar que sea la carpeta correcta.</small>
+                                    </div>
+                                    <div class="form-group col-md-2 mt-1">
+                                        <button type="submit" class="btn btn-info btn-action">Verificar</button>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-info">Verificar</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-transparent own-card">
+                            <div class="card-header card-header-primary m-0">
                             <div style="display: flex; flex-wrap: wrap">
                                 <h4 class="card-title ">Lista de intereses</h4>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered data-table">
+                                <table class="table table-striped  data-table">
                                     <thead class="text-primary thead-color">
                                     <th>Email del Cliente</th>
                                     <th>Nombre del cliente</th>
@@ -122,7 +128,7 @@
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
+                        "sSearch": "Buscador",
                         "sUrl": "",
                         "sInfoThousands": ",",
                         "sLoadingRecords": "Cargando...",
@@ -168,7 +174,7 @@
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
+                        "sSearch": "Buscador",
                         "sUrl": "",
                         "sInfoThousands": ",",
                         "sLoadingRecords": "Cargando...",
