@@ -46,6 +46,8 @@ class CuentasCreditosController extends Controller
 
         $content = Storage::disk('myDisk')->allFiles('/cuentas_credito/'.$date.'/');
 
+        $added_files = [];
+        $i = 0;
         foreach ($content as $file) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -61,13 +63,22 @@ class CuentasCreditosController extends Controller
                 $record_exist = EstadosCreditos::where('file_pdf', $file_pdf)->first();
 
                 if ($record_exist === null) {
-                    EstadosCreditos::create([
+                    $added_files [$i] = [
                         'email' => $email,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
-                    ]);
+                    ];
+                    $i++;
                 }
             }
+        }
+
+        foreach ($added_files as $added_file) {
+            EstadosCreditos::create([
+                'email' => $added_file['email'],
+                'date' => $added_file['date'],
+                'file_pdf' => $added_file['file_pdf']
+            ]);
         }
 
         return redirect('/administrador/cuentas_credito')->with('message', 'Estados de Cuenta de Créditos verificados correctamente.');

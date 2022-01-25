@@ -13,7 +13,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="container message-box bg-transparent mt-2 pl-0 pr-0">
+                                <div class="container message-box bg-transparent mt-2 pl-0 pr-0 float-left">
                                     <h4 class="own-card-title font-weight-bold">Modificar datos</h4>
                                     <p class="own-category font-weight-bold">Actualiza los campos que sean necesarios. Al terminar, presiona 'Actualizar Cliente'.</p>
                                 </div>
@@ -57,4 +57,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection

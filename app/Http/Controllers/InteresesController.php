@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\In;
 use const http\Client\Curl\AUTH_ANY;
 use App\Models\Interes;
 
@@ -47,6 +48,8 @@ class InteresesController extends Controller
 
         $content = Storage::disk('myDisk')->allFiles('/intereses/'.$date.'/');
 
+        $added_files = [];
+        $i = 0;
         foreach ($content as $file) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -62,13 +65,22 @@ class InteresesController extends Controller
                 $record_exist = Interes::where('file_pdf', $file_pdf)->first();
 
                 if ($record_exist === null) {
-                    Interes::create([
+                    $added_files [$i] = [
                         'email' => $email,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
-                    ]);
+                    ];
+                    $i++;
                 }
             }
+        }
+
+        foreach ($added_files as $added_file) {
+            Interes::create([
+                'email' => $added_file['email'],
+                'date' => $added_file['date'],
+                'file_pdf' => $added_file['file_pdf'],
+            ]);
         }
 
         return redirect('/administrador/intereses')->with('message', 'Intereses verificados correctamente.');

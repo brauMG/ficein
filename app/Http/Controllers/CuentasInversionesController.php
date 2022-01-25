@@ -45,6 +45,8 @@ class CuentasInversionesController extends Controller
 
         $content = Storage::disk('myDisk')->allFiles('/cuentas_inversion/'.$date.'/');
 
+        $added_files = [];
+        $i = 0;
         foreach ($content as $file) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -61,14 +63,24 @@ class CuentasInversionesController extends Controller
                 $record_exist = EstadosInversion::where('file_pdf', $file_pdf)->first();
 
                 if ($record_exist === null) {
-                    EstadosInversion::create([
+                    $added_files [$i] = [
                         'email' => $email,
                         'currency' => $currency,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
-                    ]);
+                    ];
+                    $i++;
                 }
             }
+        }
+
+        foreach ($added_files as $added_file) {
+            EstadosInversion::create([
+                'email' => $added_file['email'],
+                'currency' => $added_file['currency'],
+                'date' => $added_file['date'],
+                'file_pdf' => $added_file['file_pdf']
+            ]);
         }
 
         return redirect('/administrador/cuentas_inversion')->with('message', 'Estados de Cuenta de Inversiones verificados correctamente.');

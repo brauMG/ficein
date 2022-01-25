@@ -46,6 +46,8 @@ class ConstanciasInversionesController extends Controller
 
         $content = Storage::disk('myDisk')->allFiles('/constancias_inversion/'.$date.'/');
 
+        $added_files = [];
+        $i = 0;
         foreach ($content as $file) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -54,11 +56,12 @@ class ConstanciasInversionesController extends Controller
                 $data = explode(';', $filename, 6);
                 $email = $data[0];
                 $operation_number = $data[1];
+                $type = 'Indefinido';
                 if ($data[2] === 'R') {
-                    $type = 'Renovación ';
+                    $type = 'Renovación';
                 }
                 if ($data[2] === 'D') {
-                    $type = 'Depósito  ';
+                    $type = 'Depósito';
                 }
                 $day = $data[3];
                 $month = $data[4];
@@ -68,15 +71,26 @@ class ConstanciasInversionesController extends Controller
                 $record_exist = ContanciaInversion::where('file_pdf', $file_pdf)->first();
 
                 if ($record_exist === null) {
-                    ContanciaInversion::create([
+                    $added_files [$i] = [
                         'email' => $email,
                         'operation_number' => $operation_number,
                         'type' => $type,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
-                    ]);
+                    ];
+                    $i++;
                 }
             }
+        }
+
+        foreach ($added_files as $added_file) {
+            ContanciaInversion::create([
+                'email' => $added_file['email'],
+                'operation_number' => $added_file['operation_number'],
+                'type' => $added_file['type'],
+                'date' => $added_file['date'],
+                'file_pdf' => $added_file['file_pdf']
+            ]);
         }
 
         return redirect('/administrador/constancia_inversion')->with('message', 'Constancias de Inversión verificadas correctamente.');

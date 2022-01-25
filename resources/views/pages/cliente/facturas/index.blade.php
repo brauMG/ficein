@@ -4,10 +4,15 @@
     <div class="content">
         <div class="container-fluid">
             @if(\Illuminate\Support\Facades\Session::has('message'))
-                <div class="alert alert-success" role="alert">
-                    {{\Illuminate\Support\Facades\Session::get('message')}}
-                </div>
-            @endif
+                    <div class="alert alert-success" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('message')}}
+                    </div>
+                @endif
+                @if(\Illuminate\Support\Facades\Session::has('error-message'))
+                    <div class="alert alert-danger" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('error-message')}}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card bg-transparent own-card">

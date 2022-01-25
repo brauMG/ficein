@@ -13,7 +13,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="container message-box bg-transparent mt-2 pl-0 pr-0">
+                                <div class="container message-box bg-transparent mt-2 pl-0 pr-0 float-left">
                                     <h4 class="own-card-title font-weight-bold">Añadir al sistema</h4>
                                     <p class="own-category font-weight-bold">Llena todos los campos para añadir un nuevo usuario a la base de datos de Ficein. Al terminar, presiona 'Agregar Cliente'.</p>
                                 </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="container message-box bg-transparent mt-2 pl-0 pr-0">
+                                <div class="container message-box bg-transparent mt-2 pl-0 pr-0 float-left">
                                     <h4 class="own-card-title font-weight-bold">Añadir al sistema</h4>
                                     <p class="own-category font-weight-bold">Para añadir un nuevo administrador al sistema de Ficein se deben llenar los siguientes campos. Al terminar, presiona 'Agregar Administrador'.</p>
                                 </div>

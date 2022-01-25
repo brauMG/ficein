@@ -15,7 +15,7 @@
                     <div id="particleCanvas-White"></div>
                 </div>
                 <div class="container" style="position: absolute; text-align: center; bottom: 0; text-transform: uppercase">
-                    <span class="e-text" style="font-size: 80%; color: white">Importando tabla de usuarios y enviando correos</span>
+                    <span class="e-text" style="font-size: 80%; color: white">Importando tabla de usuarios y enviando correos (NO CIERRES ESTA VENTANA)</span>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-8">
                     <div class="container message-box bg-danger">
                         <h6 class="own-card-title">Importar Usuarios</h6>
-                        <p class="own-category">Para importar usuarios, selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellido Paterno, Apellido Materno, Correo, Telefono.</p>
+                        <p class="own-category">Para importar usuarios, selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellidos, Correo.</p>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                                     <small id="emailHelp" class="form-text text-muted">Asegurate de validar que el archivo sea correcto.</small>
                                 </div>
                                 <div class="form-group col-md-2 mt-1">
-                                    <button type="submit" class="btn btn-action btn-info" title="Importar Contactos" style="margin-left: 5px !important;" id="submit-file" data-toggle="modal" data-target="#exampleModalCenter" disabled>
+                                    <button type="submit" class="btn btn-action btn-info" title="Importar Contactos" style="margin-left: 5px !important;" id="submit-file" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" disabled>
                                         Procesar
                                     </button>
                                 </div>
@@ -52,10 +52,15 @@
             </div>
 
             @if(\Illuminate\Support\Facades\Session::has('message'))
-                <div class="alert alert-success" role="alert">
-                    {{\Illuminate\Support\Facades\Session::get('message')}}
-                </div>
-            @endif
+                    <div class="alert alert-success" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('message')}}
+                    </div>
+                @endif
+                @if(\Illuminate\Support\Facades\Session::has('error-message'))
+                    <div class="alert alert-danger" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('error-message')}}
+                    </div>
+                @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="card bg-transparent own-card">

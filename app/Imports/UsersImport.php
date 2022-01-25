@@ -33,6 +33,7 @@ class UsersImport implements ToCollection
             '*.2' => 'required|email|max:255|unique:users,email',
         ])->validate();
 
+        ini_set('max_execution_time', 600);
         foreach ($collection as $row) {
             $password = bcrypt(Str::random(35));
 
@@ -47,7 +48,10 @@ class UsersImport implements ToCollection
                 'updated_at' => now()
             ]);
 
-            Password::sendResetLink($user_data->only(['email']));
+//            Password::sendResetLink($user_data->only(['email']));
+//            if(env('MAIL_HOST', false) == 'smtp.mailtrap.io'){
+//                sleep(1); //use usleep(500000) for half a second or less
+//            }
         }
 
         return redirect('/administrador/usuarios')->with('message', 'Usuarios añadidos correctamente');

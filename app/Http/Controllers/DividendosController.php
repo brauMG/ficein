@@ -47,6 +47,8 @@ class DividendosController extends Controller
 
         $content = Storage::disk('myDisk')->allFiles('/dividendos/'.$date.'/');
 
+        $added_files = [];
+        $i = 0;
         foreach ($content as $file) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -62,13 +64,22 @@ class DividendosController extends Controller
                 $record_exist = Dividendos::where('file_pdf', $file_pdf)->first();
 
                 if ($record_exist === null) {
-                    Dividendos::create([
+                    $added_files [$i] = [
                         'email' => $email,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
-                    ]);
+                    ];
+                    $i++;
                 }
             }
+        }
+
+        foreach ($added_files as $added_file) {
+            Dividendos::create([
+                'email' => $added_file['email'],
+                'date' => $added_file['date'],
+                'file_pdf' => $added_file['file_pdf'],
+            ]);
         }
 
         return redirect('/administrador/dividendos')->with('message', 'Dividendos verificados correctamente.');

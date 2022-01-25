@@ -45,6 +45,8 @@ class FacturasController extends Controller
 
         $content = Storage::disk('myDisk')->allFiles('/facturas/'.$date.'/');
 
+        $added_files = [];
+        $i = 0;
         foreach ($content as $file) {
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -57,23 +59,36 @@ class FacturasController extends Controller
                 $month = $data[3];
                 $year = $data[4];
                 $file_pdf = $file;
-                $file_xml = null;
                 if(Storage::disk('myDisk')->exists('/facturas/'.$date.'/'.$filename.'.xml')) {
                     $file_xml = 'facturas/'.$date.'/'.$filename.'.xml';
+                }
+                else {
+                    return redirect('/administrador/facturas')->with('error-message', 'El procesamiento fue interrumpido debido a que el archivo: '.$file_pdf.' no esta acompañado por un xml.');
                 }
 
                 $record_exist = Facturacion::where('file_pdf', $file_pdf)->first();
 
                 if ($record_exist === null) {
-                    Facturacion::create([
+                    $added_files [$i] = [
                         'email' => $email,
                         'contract_name' => $contract_name,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
                         'file_xml' => $file_xml
-                    ]);
+                    ];
+                    $i++;
                 }
             }
+        }
+
+        foreach ($added_files as $added_file) {
+            Facturacion::create([
+                'email' => $added_file['email'],
+                'contract_name' => $added_file['contract_name'],
+                'date' => $added_file['date'],
+                'file_pdf' => $added_file['file_pdf'],
+                'file_xml' => $added_file['file_xml']
+            ]);
         }
 
         return redirect('/administrador/facturas')->with('message', 'Facturas vinculadas correctamente');

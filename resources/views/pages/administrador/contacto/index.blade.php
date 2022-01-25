@@ -28,13 +28,13 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="name" class="own-label">Texto</label>
-                                        <textarea rows="7" type="text" class="form-control own-form-2" id="texto" name="texto" disabled>{{$contacto->texto}}</textarea>
+                                        <textarea rows="10" type="text" class="form-control own-form-2" id="texto" name="texto" disabled>{{$contacto->texto}}</textarea>
                                         @error('name')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-row" style="flex-wrap: wrap; width: -webkit-fill-available">
+                                <div class="form-row" style="flex-wrap: wrap; width: -webkit-fill-available; margin-top: 3%">
                                     <div class="card card-nav-tabs" style="width: 33%">
                                         <div class="card-header card-header-primary">
                                             Correos electrónicos
