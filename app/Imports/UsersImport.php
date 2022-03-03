@@ -48,7 +48,7 @@ class UsersImport implements ToCollection
                 'updated_at' => now()
             ]);
 
-//            Password::sendResetLink($user_data->only(['email']));
+            Password::sendResetLink($user_data->only(['email']));
 //            if(env('MAIL_HOST', false) == 'smtp.mailtrap.io'){
 //                sleep(1); //use usleep(500000) for half a second or less
 //            }
