@@ -19,63 +19,19 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'Martinez',
             'email' => 'braulio@firefish.com.mx',
             'email_verified_at' => now(),
-            'password' => Hash::make('asdasdasd'),
+            'password' => Hash::make('T3rr0n.2022.FF'),
             'type' => 0,
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
-            'name' => 'User 1',
-            'last_name' => 'From Test',
-            'email' => 'user1@test.com',
+            'name' => 'Octavio',
+            'last_name' => 'Ruiz',
+            'email' => 'desarrollo.ficein@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('asdasdasd'),
-            'type' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'User 2',
-            'last_name' => 'From Test',
-            'email' => 'user2@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdasdasd'),
-            'type' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'User 3',
-            'last_name' => 'From Test',
-            'email' => 'user3@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdasdasd'),
-            'type' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'User 4',
-            'last_name' => 'From Test',
-            'email' => 'user4@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdasdasd'),
-            'type' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'User 5',
-            'last_name' => 'From Test',
-            'email' => 'user5@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdasdasd'),
-            'type' => 1,
+            'password' => Hash::make('si$tema.fice_in$2022'),
+            'type' => 0,
             'created_at' => now(),
             'updated_at' => now()
         ]);
