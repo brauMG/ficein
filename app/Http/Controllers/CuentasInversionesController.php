@@ -76,7 +76,7 @@ class CuentasInversionesController extends Controller
 
         foreach ($added_files as $added_file) {
             EstadosInversion::create([
-//                'email' => $added_file['email'],
+                'email' => $added_file['email'],
                 'currency' => $added_file['currency'],
                 'date' => $added_file['date'],
                 'file_pdf' => $added_file['file_pdf']
