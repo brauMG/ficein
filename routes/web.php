@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth', 'admin'], function () {
     Route::get('/administrador/usuarios',[UsuariosController::class, 'index']);
     Route::get('/administrador/usuarios/nuevo',[UsuariosController::class, 'create']);
     Route::get('/administrador/usuarios/modificar/{id}',[UsuariosController::class, 'edit']);
-    Route::get('/administrador/usuarios/eliminar/{id}',[UsuariosController::class, 'delete']);
+    Route::get('/administrador/usuarios/eliminar/{id}',[UsuariosController::class, 'prepare']);
     Route::post('/administrador/usuarios/agregarCliente',[UsuariosController::class, 'store_client'])->name('AgregarCliente');
     Route::post('/administrador/usuarios/agregarAdministrador',[UsuariosController::class, 'store_admin'])->name('AgregarAdministrador');
     Route::put('/administrador/usuarios/actualizarCliente/{id}',[UsuariosController::class, 'update'])->name('ActualizarCliente');

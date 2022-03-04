@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Dividendos;
 use App\Models\EstadosCreditos;
 use App\Models\EstadosInversion;
+use App\Models\User;
 use Illuminate\Http\File;
 use App\Models\Facturacion;
 use Illuminate\Http\Request;
@@ -74,15 +75,37 @@ class DividendosController extends Controller
             }
         }
 
+        $null_emails = [];
+        $i = 0;
         foreach ($added_files as $added_file) {
-            Dividendos::create([
-                'email' => $added_file['email'],
-                'date' => $added_file['date'],
-                'file_pdf' => $added_file['file_pdf'],
-            ]);
+            $user = User::where('email', '=', $added_file['email'])->first();
+            if ($user === null) {
+                $null_emails[$i] = $added_file['email'];
+                $i++;
+            }
+            else {
+                Dividendos::create([
+                    'email' => $added_file['email'],
+                    'date' => $added_file['date'],
+                    'file_pdf' => $added_file['file_pdf'],
+                ]);
+            }
         }
 
-        return redirect('/administrador/dividendos')->with('message', 'Dividendos verificados correctamente.');
+        if ($i > 0) {
+            $message_emails = '';
+            foreach ($null_emails as $null_email) {
+                $message_emails = $null_email.', '.$message_emails;
+            }
+            return redirect('/administrador/constancia_inversion')->with('warning-message',
+                'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
+                .$message_emails.
+                ' el resto de Dividendos fueron verificados correctamente.'
+            );
+        }
+        else {
+            return redirect('/administrador/dividendos')->with('message', 'Dividendos verificados correctamente.');
+        }
     }
 
     public function pdf_auth($file) {

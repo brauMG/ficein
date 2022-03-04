@@ -32,7 +32,6 @@ class UsuariosController extends Controller
     public function index()
     {
         $users = User::where('type', 1)->get();
-
         return view('pages.administrador.usuarios.index', compact('users'));
 
     }
@@ -109,6 +108,13 @@ class UsuariosController extends Controller
         ]);
 
         return redirect('/administrador/usuarios')->with('message', 'Administrador añadido correctamente');
+    }
+
+    public function prepare($id)
+    {
+        $user= User::where('id', $id)->get()->toArray();
+        $user = $user[0];
+        return view('pages.administrador.usuarios.prepare', compact('user'));
     }
 
     public function delete($id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EstadosCreditos;
 use App\Models\EstadosInversion;
+use App\Models\User;
 use Illuminate\Http\File;
 use App\Models\Facturacion;
 use Illuminate\Http\Request;
@@ -73,15 +74,37 @@ class CuentasCreditosController extends Controller
             }
         }
 
+        $null_emails = [];
+        $i = 0;
         foreach ($added_files as $added_file) {
-            EstadosCreditos::create([
-                'email' => $added_file['email'],
-                'date' => $added_file['date'],
-                'file_pdf' => $added_file['file_pdf']
-            ]);
+            $user = User::where('email', '=', $added_file['email'])->first();
+            if ($user === null) {
+                $null_emails[$i] = $added_file['email'];
+                $i++;
+            }
+            else {
+                EstadosCreditos::create([
+                    'email' => $added_file['email'],
+                    'date' => $added_file['date'],
+                    'file_pdf' => $added_file['file_pdf']
+                ]);
+            }
         }
 
-        return redirect('/administrador/cuentas_credito')->with('message', 'Estados de Cuenta de Créditos verificados correctamente.');
+        if ($i > 0) {
+            $message_emails = '';
+            foreach ($null_emails as $null_email) {
+                $message_emails = $null_email.', '.$message_emails;
+            }
+            return redirect('/administrador/constancia_inversion')->with('warning-message',
+                'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
+                .$message_emails.
+                ' el resto de Estados de Cuenta de Créditos fueron verificados correctamente.'
+            );
+        }
+        else {
+            return redirect('/administrador/cuentas_credito')->with('message', 'Estados de Cuenta de Créditos verificados correctamente.');
+        }
     }
 
     public function pdf_auth($file) {

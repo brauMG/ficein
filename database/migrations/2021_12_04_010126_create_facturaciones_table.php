@@ -22,7 +22,7 @@ class CreateFacturacionesTable extends Migration
             $table->string('file_xml')->unique()->nullable();
             $table->timestamps();
 
-            $table->foreign('email')->references('email')->on('users');
+            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
         });
     }
 

@@ -20,7 +20,7 @@ class CreateDividendosTable extends Migration
             $table->string('file_pdf');
             $table->timestamps();
 
-            $table->foreign('email')->references('email')->on('users');
+            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
         });
     }
 

@@ -61,6 +61,11 @@
                         {{\Illuminate\Support\Facades\Session::get('error-message')}}
                     </div>
                 @endif
+            @if(\Illuminate\Support\Facades\Session::has('warning-message'))
+                <div class="alert alert-warning" role="alert">
+                    {{\Illuminate\Support\Facades\Session::get('warning-message')}}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="card bg-transparent own-card">
