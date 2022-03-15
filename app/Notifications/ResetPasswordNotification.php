@@ -29,6 +29,6 @@ class ResetPasswordNotification extends ResetPassword implements ShouldQueue
             ->subject('Ficein - Genera tu contraseña de acceso')
             ->line('Estas recibiendo este mensaje debido a que tu cuenta ha sido registrada en nuestro sistema.')
             ->action('Generar Contraseña', url('password/reset', $this->token))
-            ->line('Es necesario que presiones el botón para generar una contraseña de acceso. El enlace dentro de este mensaje solamente es válido por 24 horas, si el tiempo de expiración ha sido superado puedes solicitar el envío de un nuevo mensaje desde el siguiente enlace: https://ficein.local/password/reset');
+            ->line('Es necesario que presiones el botón para generar una contraseña de acceso. El enlace dentro de este mensaje solamente es válido por 24 horas, si el tiempo de expiración ha sido superado puedes solicitar el envío de un nuevo mensaje desde el siguiente enlace: https://itfice.com/password/reset');
     }
 }
