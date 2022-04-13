@@ -24,17 +24,24 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="form-row mt-3">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label class="own-label" for="inputEmail4">Nombres</label>
                                         <input type="text" class="form-control own-form-2" id="name" name="name" value="{{$user->name}}" required>
                                         @error('name')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label class="own-label" for="inputPassword4">Apellidos</label>
                                         <input type="text" class="form-control own-form-2" id="last_name" name="last_name" value="{{$user->last_name}}" required>
                                         @error('last_name')
+                                        <span class="text-danger mt-1">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="own-label" for="inputPassword4">RFC</label>
+                                        <input type="text" class="form-control own-form-2" id="rfc" name="rfc" value="{{$user->rfc}}" required>
+                                        @error('rfc')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -51,6 +58,7 @@
                                         <button type="submit" class="btn btn-action btn-sm btn-ficein m-0" style="padding: 10px 0px !important; border-radius:8px; width: -webkit-fill-available">Actualizar Cliente</button>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
                     </div>

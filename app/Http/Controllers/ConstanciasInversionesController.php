@@ -35,7 +35,7 @@ class ConstanciasInversionesController extends Controller
     }
 
     public function index_cliente() {
-        $constancias_inversiones = ContanciaInversion::where('email', Auth::user()->email)->get();
+        $constancias_inversiones = ContanciaInversion::where('rfc', Auth::user()->rfc)->get();
 
         return view('pages.cliente.constancias_inversion.index', compact('constancias_inversiones'));
 
@@ -55,7 +55,7 @@ class ConstanciasInversionesController extends Controller
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
                 $data = explode(';', $filename, 6);
-                $email = $data[0];
+                $rfc = $data[0];
                 $operation_number = $data[1];
                 $type = 'Indefinido';
                 if ($data[2] === 'R') {
@@ -73,7 +73,7 @@ class ConstanciasInversionesController extends Controller
 
                 if ($record_exist === null) {
                     $added_files [$i] = [
-                        'email' => $email,
+                        'rfc' => $rfc,
                         'operation_number' => $operation_number,
                         'type' => $type,
                         'date' => $year . '-' . $month . '-' . $day,
@@ -84,17 +84,17 @@ class ConstanciasInversionesController extends Controller
             }
         }
 
-        $null_emails = [];
+        $null_rfcs = [];
         $i = 0;
         foreach ($added_files as $added_file) {
-            $user = User::where('email', '=', $added_file['email'])->first();
+            $user = User::where('rfc', '=', $added_file['rfc'])->first();
             if ($user === null) {
-                $null_emails[$i] = $added_file['email'];
+                $null_rfcs[$i] = $added_file['rfc'];
                 $i++;
             }
             else {
                 ContanciaInversion::create([
-                    'email' => $added_file['email'],
+                    'rfc' => $added_file['rfc'],
                     'operation_number' => $added_file['operation_number'],
                     'type' => $added_file['type'],
                     'date' => $added_file['date'],
@@ -104,13 +104,13 @@ class ConstanciasInversionesController extends Controller
         }
 
         if ($i > 0) {
-            $message_emails = '';
-            foreach ($null_emails as $null_email) {
-                $message_emails = $null_email.', '.$message_emails;
+            $message_rfcs = '';
+            foreach ($null_rfcs as $null_rfc) {
+                $message_rfcs = $null_rfc.', '.$message_rfcs;
             }
             return redirect('/administrador/constancia_inversion')->with('warning-message',
                 'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
-                .$message_emails.
+                .$message_rfcs.
                 ' el resto de Constancias de Inversión fueron verificadas correctamente.'
             );
         }
@@ -122,7 +122,7 @@ class ConstanciasInversionesController extends Controller
     public function pdf_auth($file) {
         $file = ContanciaInversion::where('id', $file)->first();
 
-        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
+        if(Auth::user()->rfc === $file->client->rfc || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
         }else{
             return abort('403');

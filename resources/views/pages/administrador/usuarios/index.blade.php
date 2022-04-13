@@ -81,7 +81,8 @@
                             <div class="table-responsive">
                                 <table class="table table-striped data-table">
                                     <thead class="text-primary thead-color">
-                                    <th>Email del Cliente</th>
+                                    <th>RFC</th>
+                                    <th>Email</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
                                     <th>Correos</th>
@@ -90,7 +91,8 @@
                                     <tbody>
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td>{{$user->email}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$user->rfc}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$user->email}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->last_name}}</td>
                                             <td>{{$user->email}}</td>

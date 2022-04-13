@@ -15,14 +15,14 @@ class CreateFacturacionesTable extends Migration
     {
         Schema::create('facturaciones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email');
+            $table->string('rfc');
             $table->string('contract_name');
             $table->date('date');
             $table->string('file_pdf')->unique();
             $table->string('file_xml')->unique()->nullable();
             $table->timestamps();
 
-            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
+            $table->foreign('rfc')->references('rfc')->on('users')->onDelete('cascade');
         });
     }
 

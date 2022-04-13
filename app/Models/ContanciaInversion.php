@@ -12,7 +12,7 @@ class ContanciaInversion extends Model
     protected $table = 'constacias_de_inversion';
 
     protected $fillable = [
-        'email',
+        'rfc',
         'operation_number',
         'type',
         'date',
@@ -22,6 +22,6 @@ class ContanciaInversion extends Model
     public $timestamps = true;
 
     public function client() {
-        return $this->belongsTo(User::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'rfc', 'rfc');
     }
 }

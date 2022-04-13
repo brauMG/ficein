@@ -24,18 +24,18 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                            <div class="bmd-form-group{{ $errors->has('rfc') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                   <span class="input-group-text">
                     <i class="material-icons">email</i>
                   </span>
                                     </div>
-                                    <input type="email" name="email" class="form-control" placeholder="{{ __('Correo Eléctronico') }}" value="{{ old('email') }}" required>
+                                    <input type="text" name="rfc" class="form-control" placeholder="{{ __('RFC') }}" value="{{ old('rfc') }}" required>
                                 </div>
-                                @if ($errors->has('email'))
-                                    <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                @if ($errors->has('rfc'))
+                                    <div id="rfc-error" class="error text-danger pl-3" for="rfc" style="display: block;">
+                                        <strong>{{ $errors->first('rfc') }}</strong>
                                     </div>
                                 @endif
                             </div>

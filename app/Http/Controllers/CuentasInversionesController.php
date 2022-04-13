@@ -34,7 +34,7 @@ class CuentasInversionesController extends Controller
     }
 
     public function index_cliente() {
-        $cuentas_inversiones = EstadosInversion::where('email', Auth::user()->email)->get();
+        $cuentas_inversiones = EstadosInversion::where('rfc', Auth::user()->rfc)->get();
 
         return view('pages.cliente.cuentas_inversion.index', compact('cuentas_inversiones'));
 
@@ -54,7 +54,7 @@ class CuentasInversionesController extends Controller
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
                 $data = explode(';', $filename, 5);
-                $email = $data[0];
+                $rfc = $data[0];
                 $currency = $data[1];
                 $day = $data[2];
                 $month = $data[3];
@@ -65,7 +65,7 @@ class CuentasInversionesController extends Controller
 
                 if ($record_exist === null) {
                     $added_files [$i] = [
-                        'email' => $email,
+                        'rfc' => $rfc,
                         'currency' => $currency,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
@@ -75,17 +75,17 @@ class CuentasInversionesController extends Controller
             }
         }
 
-        $null_emails = [];
+        $null_rfcs = [];
         $i = 0;
         foreach ($added_files as $added_file) {
-            $user = User::where('email', '=', $added_file['email'])->first();
+            $user = User::where('rfc', '=', $added_file['rfc'])->first();
             if ($user === null) {
-                $null_emails[$i] = $added_file['email'];
+                $null_rfcs[$i] = $added_file['rfc'];
                 $i++;
             }
             else {
                 EstadosInversion::create([
-                    'email' => $added_file['email'],
+                    'rfc' => $added_file['rfc'],
                     'currency' => $added_file['currency'],
                     'date' => $added_file['date'],
                     'file_pdf' => $added_file['file_pdf']
@@ -94,13 +94,13 @@ class CuentasInversionesController extends Controller
         }
 
         if ($i > 0) {
-            $message_emails = '';
-            foreach ($null_emails as $null_email) {
-                $message_emails = $null_email.', '.$message_emails;
+            $message_rfcs = '';
+            foreach ($null_rfcs as $null_rfc) {
+                $message_rfcs = $null_rfc.', '.$message_rfcs;
             }
             return redirect('/administrador/cuentas_inversion')->with('warning-message',
                 'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
-                .$message_emails.
+                .$message_rfcs.
                 ' el resto de Estados de Cuenta de Inversiones fueron verificados correctamente.'
             );
         }
@@ -112,7 +112,7 @@ class CuentasInversionesController extends Controller
     public function pdf_auth($file) {
         $file = EstadosInversion::where('id', $file)->first();
 
-        if(Auth::user()->email === $file->client->email || Auth::user()->type === 0) {
+        if(Auth::user()->rfc === $file->client->rfc || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
         }else{
             return abort('403');

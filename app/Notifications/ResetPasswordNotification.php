@@ -27,8 +27,9 @@ class ResetPasswordNotification extends ResetPassword implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Ficein - Genera tu contraseña de acceso')
-            ->line('Estas recibiendo este mensaje debido a que tu cuenta ha sido registrada en nuestro sistema.')
+            ->line('Estas recibiendo este mensaje debido a que has solicitado establecer una contraseña.')
             ->action('Generar Contraseña', url('password/reset', $this->token))
-            ->line('Es necesario que presiones el botón para generar una contraseña de acceso. El enlace dentro de este mensaje solamente es válido por 24 horas, si el tiempo de expiración ha sido superado puedes solicitar el envío de un nuevo mensaje desde el siguiente enlace: https://itfice.com/password/reset');
+            ->line('Es necesario que presiones el botón para colocar tu nueva contraseña, asegurate de colocar el RFC correcto. El enlace dentro de este mensaje solamente es válido por 24 horas, si el tiempo de expiración ha sido superado puedes solicitar el envío de un nuevo mensaje desde el siguiente enlace: https://itfice.com/password/reset')
+        ;
     }
 }

@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Braulio',
             'last_name' => 'Martinez',
+            'rfc' => 'firefish',
             'email' => 'braulio@firefish.com.mx',
             'email_verified_at' => now(),
             'password' => Hash::make('T3rr0n.2022.FF'),
@@ -28,6 +29,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Octavio',
             'last_name' => 'Ruiz',
+            'rfc' => 'admin',
             'email' => 'desarrollo.ficein@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('si$tema.fice_in$2022'),

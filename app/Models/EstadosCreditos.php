@@ -12,7 +12,7 @@ class EstadosCreditos extends Model
     protected $table = 'estados_de_cuenta_creditos';
 
     protected $fillable = [
-        'email',
+        'rfc',
         'date',
         'file_pdf',
     ];
@@ -20,6 +20,6 @@ class EstadosCreditos extends Model
     public $timestamps = true;
 
     public function client() {
-        return $this->belongsTo(User::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'rfc', 'rfc');
     }
 }

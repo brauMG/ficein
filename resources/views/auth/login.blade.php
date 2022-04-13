@@ -26,11 +26,11 @@
                                         <i class="material-icons">email</i>
                                       </span>
                                         </div>
-                                        <input type="email" name="email" class="form-control own-form-2" placeholder="{{ __('Correo Eléctronico') }}" value="{{ old('email') }}" required>
+                                        <input type="text" name="rfc" class="form-control own-form-2" placeholder="{{ __('RFC') }}" value="{{ old('rfc') }}" required>
                                     </div>
-                                    @if ($errors->has('email'))
-                                        <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                    @if ($errors->has('rfc'))
+                                        <div id="rfc-error" class="error text-danger pl-3" for="rfc" style="display: block;">
+                                            <strong>{{ $errors->first('rfc') }}</strong>
                                         </div>
                                     @endif
                                 </div>

@@ -23,17 +23,24 @@
                             <form action="{{route('AgregarCliente')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row mt-3">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label class="own-label">Nombres</label>
                                         <input type="text" class="form-control own-form-2" id="name" name="name" value="{{ old('name') }}" required>
                                         @error('name')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label class="own-label">Apellidos</label>
                                         <input type="text" class="form-control own-form-2" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
                                         @error('last_name')
+                                        <span class="text-danger mt-1">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="own-label">RFC</label>
+                                        <input type="text" class="form-control own-form-2" id="rfc" name="rfc" value="{{ old('rfc') }}" required>
+                                        @error('rfc')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -93,6 +100,13 @@
                                         <label class="own-label">Correo Electrónico</label>
                                         <input type="email" class="form-control own-form-2" id="email_admin" name="email_admin" value="{{ old('email_admin') }}" required>
                                         @error('email_admin')
+                                        <span class="text-danger mt-1">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="own-label">Usuario de Login</label>
+                                        <input type="email" class="form-control own-form-2" id="rfc_admin" name="rfc_admin" value="{{ old('rfc_admin') }}" required>
+                                        @error('rfc_admin')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
                                     </div>

@@ -15,12 +15,12 @@ class CreateEstadosCreditosTable extends Migration
     {
         Schema::create('estados_de_cuenta_creditos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email');
+            $table->string('rfc');
             $table->date('date');
             $table->string('file_pdf');
             $table->timestamps();
 
-            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
+            $table->foreign('rfc')->references('rfc')->on('users')->onDelete('cascade');
         });
     }
 
