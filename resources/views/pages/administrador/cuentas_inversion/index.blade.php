@@ -69,7 +69,7 @@
                                     @foreach ($cuentas_inversiones as $cuenta_inversion)
                                         <tr>
                                             <td>{{$cuenta_inversion->client->email}}<i class="material-icons plus">add_circle</i></td>
-                                            <td>{{$rfc}}</td>
+                                            <td>{{$cuenta_inversion->client->rfc}}</td>
                                             <td>{{$cuenta_inversion->client->name}} {{$cuenta_inversion->client->last_name}}</td>
                                             <td>{{$cuenta_inversion->currency}}</td>
                                             <td>

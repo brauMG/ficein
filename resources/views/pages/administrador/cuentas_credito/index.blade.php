@@ -68,7 +68,7 @@
                                     @foreach ($cuentas_creditos as $credito)
                                         <tr>
                                             <td>{{$credito->client->email}}<i class="material-icons plus">add_circle</i></td>
-                                            <td>{{$rfc}}</td>
+                                            <td>{{$credito->client->rfc}}</td>
                                             <td>{{$credito->client->name}} {{$credito->client->last_name}}</td>
                                             <td>
                                                 @if(date('m', strtotime($credito->date)) === '01')

@@ -70,7 +70,7 @@
                                     @foreach ($facturas as $factura)
                                         <tr>
                                             <td>{{$factura->client->email}}<i class="material-icons plus">add_circle</i></td>
-                                            <td>{{$rfc}}</td>
+                                            <td>{{$factura->client->rfc}}</td>
                                             <td>{{$factura->client->name}} {{$factura->client->last_name}}</td>
                                             <td>{{$factura->contract_name}}</td>
                                             <td>{{date('d', strtotime($factura->date))}}</td>

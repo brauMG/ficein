@@ -68,7 +68,7 @@
                                     @foreach ($intereses as $interes)
                                         <tr>
                                             <td>{{$interes->client->email}}<i class="material-icons plus">add_circle</i></td>
-                                            <td>{{$rfc}}</td>
+                                            <td>{{$interes->client->rfc}}</td>
                                             <td>{{$interes->client->name}} {{$interes->client->last_name}}</td>
                                             <td>
                                                 @if(date('m', strtotime($interes->date)) === '01')

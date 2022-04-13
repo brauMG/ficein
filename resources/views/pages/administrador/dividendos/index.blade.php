@@ -68,7 +68,7 @@
                                     @foreach ($dividendos as $dividendo)
                                         <tr>
                                             <td>{{$dividendo->client->email}}<i class="material-icons plus">add_circle</i></td>
-                                            <td>{{$rfc}}</td>
+                                            <td>{{$dividendo->client->rfc}}</td>
                                             <td>{{$dividendo->client->name}} {{$dividendo->client->last_name}}</td>
                                             <td>
                                                 @if(date('m', strtotime($dividendo->date)) === '01')
