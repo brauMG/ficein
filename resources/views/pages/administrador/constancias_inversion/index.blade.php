@@ -58,6 +58,7 @@
                                 <table class="table table-striped  data-table">
                                     <thead class="text-primary thead-color">
                                     <th>Email del Cliente</th>
+                                    <th>RFC</th>
                                     <th>Nombre del cliente</th>
                                     <th>Num. de Operación</th>
                                     <th>Tipo</th>
@@ -69,6 +70,7 @@
                                     @foreach ($constancias_inversiones as $constancia)
                                         <tr>
                                             <td>{{$constancia->client->email}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$rfc}}</td>
                                             <td>{{$constancia->client->name}} {{$constancia->client->last_name}}</td>
                                             <td>{{$constancia->operation_number}}</td>
                                             <td>{{$constancia->type}}</td>

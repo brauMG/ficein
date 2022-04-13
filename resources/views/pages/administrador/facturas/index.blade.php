@@ -58,6 +58,7 @@
                                 <table class="table table-striped data-table">
                                     <thead class="text-primary thead-color">
                                     <th>Email del Cliente</th>
+                                    <th>RFC</th>
                                     <th>Nombre del cliente</th>
                                     <th>Contrato</th>
                                     <th>Día</th>
@@ -69,6 +70,7 @@
                                     @foreach ($facturas as $factura)
                                         <tr>
                                             <td>{{$factura->client->email}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$rfc}}</td>
                                             <td>{{$factura->client->name}} {{$factura->client->last_name}}</td>
                                             <td>{{$factura->contract_name}}</td>
                                             <td>{{date('d', strtotime($factura->date))}}</td>
