@@ -25,7 +25,7 @@
                 <div class="col-md-8">
                     <div class="container message-box bg-danger">
                         <h6 class="own-card-title">Importar Usuarios</h6>
-                        <p class="own-category">Para importar usuarios, selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellidos, Correo.</p>
+                        <p class="own-category">Para importar usuarios, selecciona un archivo excel que contenga las siguientes columnas, en el siguiente orden: Nombre, Apellidos, Correo, RFC.</p>
                     </div>
                 </div>
             </div>
