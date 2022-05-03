@@ -64,7 +64,8 @@ class UsuariosController extends Controller
             'type' => 1,
         ]);
 
-        Mail::to($user_data['email'])->queue(new ResetPass($user_data['rfc']));
+//        Activar esta linea para el envio de correos
+//        Mail::to($user_data['email'])->queue(new ResetPass($user_data['rfc']));
 
 
 //        Password::sendResetLink($request->only(['email']));

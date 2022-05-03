@@ -52,8 +52,8 @@ class UsersImport implements ToCollection
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
-
-            Mail::to($user_data['email'])->queue(new ResetPass($user_data['rfc']));
+//            Activar esta linea para el envio de correos
+//            Mail::to($user_data['email'])->queue(new ResetPass($user_data['rfc']));
 
 //            Password::sendResetLink($user_data->only(['email']));
 //            if(env('MAIL_HOST', false) == 'smtp.mailtrap.io'){
