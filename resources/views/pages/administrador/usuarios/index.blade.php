@@ -56,11 +56,15 @@
                         {{\Illuminate\Support\Facades\Session::get('message')}}
                     </div>
                 @endif
-                @if(\Illuminate\Support\Facades\Session::has('error-message'))
-                    <div class="alert alert-danger" role="alert">
-                        {{\Illuminate\Support\Facades\Session::get('error-message')}}
-                    </div>
-                @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @if(\Illuminate\Support\Facades\Session::has('warning-message'))
                 <div class="alert alert-warning" role="alert">
                     {{\Illuminate\Support\Facades\Session::get('warning-message')}}
