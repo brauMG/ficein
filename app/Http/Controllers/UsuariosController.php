@@ -109,7 +109,7 @@ class UsuariosController extends Controller
             'name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|max:255|email',
-            'rfc' => ['required', 'rfc', 'max:255', Rule::unique('users', 'rfc')->ignore($id, 'id')]
+            'rfc' => 'required|max:255|unique:users,rfc',
         ]);
 
         User::where('id', $id)->update([
