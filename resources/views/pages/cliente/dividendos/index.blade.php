@@ -69,6 +69,11 @@
                                                 <a href="{{ url('/cliente/dividendos/pdf/download/' . $dividendo->id) }}" rel="tooltip" class="btn btn-sm btn-warning btn-adjust">
                                                     PDF <i class="material-icons">file_download</i>
                                                 </a>
+                                                @if($interes->file_xml != null)
+                                                    <a href="{{ url('/cliente/dividendos/xml/download/' . $dividendo->id) }}" rel="tooltip" class="btn btn-sm btn-ficein btn-adjust">
+                                                        XML <i class="material-icons">file_download</i>
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

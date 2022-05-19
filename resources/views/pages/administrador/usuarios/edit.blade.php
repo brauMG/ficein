@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="own-label" for="inputPassword4">Apellidos</label>
-                                        <input type="text" class="form-control own-form-2" id="last_name" name="last_name" value="{{$user->last_name}}" required>
+                                        <input type="text" class="form-control own-form-2" id="last_name" name="last_name" value="{{$user->last_name}}">
                                         @error('last_name')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror

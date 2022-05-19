@@ -32,7 +32,7 @@ class UsersImport implements ToCollection
     {
         Validator::make($collection->toArray(),[
             '*.0' => 'required|max:255',
-            '*.1' => 'required|max:255',
+            '*.1' => 'max:255',
             '*.2' => 'required|email',
             '*.3' => 'required|max:255',
         ])->validate();

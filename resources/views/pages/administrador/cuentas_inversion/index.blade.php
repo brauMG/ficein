@@ -61,6 +61,7 @@
                                     <th>RFC</th>
                                     <th>Nombre del cliente</th>
                                     <th>Divisa</th>
+                                    <th>Contrato</th>
                                     <th>Mes</th>
                                     <th>Año</th>
                                     <th class="action-row">Descargar</th>
@@ -72,6 +73,7 @@
                                             <td>{{$cuenta_inversion->client->rfc}}</td>
                                             <td>{{$cuenta_inversion->client->name}} {{$cuenta_inversion->client->last_name}}</td>
                                             <td>{{$cuenta_inversion->currency}}</td>
+                                            <td>{{$cuenta_inversion->contract_name}}</td>
                                             <td>
                                                 @if(date('m', strtotime($cuenta_inversion->date)) === '01')
                                                     Enero

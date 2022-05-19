@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="own-label">Apellidos</label>
-                                        <input type="text" class="form-control own-form-2" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+                                        <input type="text" class="form-control own-form-2" id="last_name" name="last_name" value="{{ old('last_name') }}">
                                         @error('last_name')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="own-label">Apellidos</label>
-                                        <input type="text" class="form-control own-form-2" id="last_name_admin" name="last_name_admin" value="{{ old('last_name_admin') }}"  required>
+                                        <input type="text" class="form-control own-form-2" id="last_name_admin" name="last_name_admin" value="{{ old('last_name_admin') }}" >
                                         @error('last_name_admin')
                                         <span class="text-danger mt-1">{{ $message }}</span>
                                         @enderror

@@ -47,7 +47,7 @@ class UsuariosController extends Controller
     {
         $attributes = request()->validate([
             'name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'last_name' => 'max:255',
             'email' => 'required|email|max:255',
             'rfc' => 'required|max:255|unique:users,rfc',
         ]);
@@ -77,7 +77,7 @@ class UsuariosController extends Controller
     {
         $attributes = request()->validate([
             'name_admin' => 'required|max:255',
-            'last_name_admin' => 'required|max:255',
+            'last_name_admin' => 'max:255',
             'email_admin' => 'required|email|max:255|unique:users,email',
             'rfc_admin' => 'required|max:255|unique:users,rfc',
             'password_admin' => 'required|min:8|max:255',
@@ -107,7 +107,7 @@ class UsuariosController extends Controller
     {
         $attributes = request()->validate([
             'name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'last_name' => 'max:255',
             'email' => 'required|max:255|email',
             'rfc' => ['required', 'max:255', Rule::unique('users', 'rfc')->ignore($id, 'id')]
         ]);

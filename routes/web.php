@@ -95,10 +95,12 @@ Route::group(['middleware' => 'auth'], function () {
     // dividendos
     Route::get('/cliente/dividendos',[DividendosController::class, 'index_cliente']);
     Route::get('/cliente/dividendos/pdf/download/{file}',[DividendosController::class, 'pdf_auth']);
+    Route::get('/cliente/dividendos/xml/download/{file}',[DividendosController::class, 'xml_auth']);
 
     // intereses
     Route::get('/cliente/intereses',[InteresesController::class, 'index_cliente']);
     Route::get('/cliente/intereses/pdf/download/{file}',[InteresesController::class, 'pdf_auth']);
+    Route::get('/cliente/intereses/xml/download/{file}',[InteresesController::class, 'xml_auth']);
 
     // informacion de contacto
     Route::get('/cliente/contacto',[ContactoController::class, 'index']);

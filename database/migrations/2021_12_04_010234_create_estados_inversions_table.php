@@ -17,6 +17,7 @@ class CreateEstadosInversionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('rfc');
             $table->string('currency');
+            $table->string('contract_name');
             $table->date('date');
             $table->string('file_pdf');
             $table->timestamps();

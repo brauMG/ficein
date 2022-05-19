@@ -18,6 +18,7 @@ class CreateDividendosTable extends Migration
             $table->string('rfc');
             $table->date('date');
             $table->string('file_pdf');
+            $table->string('file_xml');
             $table->timestamps();
 
             $table->foreign('rfc')->references('rfc')->on('users')->onDelete('cascade');

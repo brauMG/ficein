@@ -53,12 +53,13 @@ class CuentasInversionesController extends Controller
 
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
-                $data = explode(';', $filename, 5);
+                $data = explode(';', $filename, 6);
                 $rfc = $data[0];
                 $currency = $data[1];
-                $day = $data[2];
-                $month = $data[3];
-                $year = $data[4];
+                $contract_name = $data[2];
+                $day = $data[3];
+                $month = $data[4];
+                $year = $data[5];
                 $file_pdf = $file;
 
                 $record_exist = EstadosInversion::where('file_pdf', $file_pdf)->first();
@@ -67,6 +68,7 @@ class CuentasInversionesController extends Controller
                     $added_files [$i] = [
                         'rfc' => $rfc,
                         'currency' => $currency,
+                        'contract_name' => $contract_name,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
                     ];
@@ -87,6 +89,7 @@ class CuentasInversionesController extends Controller
                 EstadosInversion::create([
                     'rfc' => $added_file['rfc'],
                     'currency' => $added_file['currency'],
+                    'contract_name' => $added_file['contract_name'],
                     'date' => $added_file['date'],
                     'file_pdf' => $added_file['file_pdf']
                 ]);
@@ -99,7 +102,7 @@ class CuentasInversionesController extends Controller
                 $message_rfcs = $null_rfc.', '.$message_rfcs;
             }
             return redirect('/administrador/cuentas_inversion')->with('warning-message',
-                'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
+                'Los siguientes RFC no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
                 .$message_rfcs.
                 ' el resto de Estados de Cuenta de Inversiones fueron verificados correctamente.'
             );

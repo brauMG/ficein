@@ -14,6 +14,7 @@ class EstadosInversion extends Model
     protected $fillable = [
         'rfc',
         'currency',
+        'contract_name',
         'date',
         'file_pdf',
     ];

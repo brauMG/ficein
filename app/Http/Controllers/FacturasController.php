@@ -107,7 +107,7 @@ class FacturasController extends Controller
                 $message_rfcs = $null_rfc.', '.$message_rfcs;
             }
             return redirect('/administrador/constancia_inversion')->with('warning-message',
-                'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
+                'Los siguientes RFC no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
                 .$message_rfcs.
                 ' el resto de Facturas fueron verificadas correctamente.'
             );

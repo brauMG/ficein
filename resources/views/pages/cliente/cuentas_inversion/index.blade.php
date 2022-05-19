@@ -31,6 +31,7 @@
                                 <table class="table table-striped  data-table">
                                     <thead class="text-primary thead-color">
                                     <th>Divisa</th>
+                                    <th>Contrato</th>
                                     <th>Mes</th>
                                     <th>Año</th>
                                     <th class="action-row">Descargar</th>
@@ -39,6 +40,7 @@
                                     @foreach ($cuentas_inversiones as $cuenta_inversion)
                                         <tr>
                                             <td>{{$cuenta_inversion->currency}}<i class="material-icons plus">add_circle</i></td>
+                                            <td>{{$cuenta_inversion->contract_name}}</td>
                                             <td>
                                                 @if(date('m', strtotime($cuenta_inversion->date)) === '01')
                                                     Enero

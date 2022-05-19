@@ -15,6 +15,7 @@ class Interes extends Model
         'rfc',
         'date',
         'file_pdf',
+        'file_xml',
     ];
 
     public $timestamps = true;

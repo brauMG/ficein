@@ -61,6 +61,12 @@ class DividendosController extends Controller
                 $month = $data[2];
                 $year = $data[3];
                 $file_pdf = $file;
+                if(Storage::disk('myDisk')->exists('/dividendos/'.$date.'/'.$filename.'.xml')) {
+                    $file_xml = 'dividendos/'.$date.'/'.$filename.'.xml';
+                }
+                else {
+                    return redirect('/administrador/dividendos')->with('error-message', 'El procesamiento fue interrumpido debido a que el archivo: '.$file_pdf.' no esta acompañado por un xml.');
+                }
 
                 $record_exist = Dividendos::where('file_pdf', $file_pdf)->first();
 
@@ -69,6 +75,7 @@ class DividendosController extends Controller
                         'rfc' => $rfc,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
+                        'file_xml' => $file_xml
                     ];
                     $i++;
                 }
@@ -88,6 +95,7 @@ class DividendosController extends Controller
                     'rfc' => $added_file['rfc'],
                     'date' => $added_file['date'],
                     'file_pdf' => $added_file['file_pdf'],
+                    'file_xml' => $added_file['file_xml']
                 ]);
             }
         }
@@ -98,7 +106,7 @@ class DividendosController extends Controller
                 $message_rfcs = $null_rfc.', '.$message_rfcs;
             }
             return redirect('/administrador/constancia_inversion')->with('warning-message',
-                'Los siguientes correos no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
+                'Los siguientes RFC no fueron encontrados en la base de datos, por lo que no existen usuarios a los que asignar los documentos: '
                 .$message_rfcs.
                 ' el resto de Dividendos fueron verificados correctamente.'
             );
@@ -113,6 +121,16 @@ class DividendosController extends Controller
 
         if(Auth::user()->rfc === $file->client->rfc || Auth::user()->type === 0) {
             return Storage::disk('myDisk')->download($file->file_pdf);
+        }else{
+            return abort('403');
+        }
+    }
+
+    public function xml_auth($file) {
+        $file = Dividendos::where('id', $file)->first();
+
+        if(Auth::user()->rfc === $file->client->rfc || Auth::user()->type === 0) {
+            return Storage::disk('myDisk')->download($file->file_xml);
         }else{
             return abort('403');
         }
