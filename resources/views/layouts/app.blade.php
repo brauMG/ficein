@@ -87,5 +87,15 @@
     }
 </script>
 <script type="text/javascript"  src="https://apiv2.popupsmart.com/api/Bundle/384430" async></script>
+<script>
+    setTimeout(function(){
+        let square = document.querySelectorAll('.ps-mark');
+
+        square.forEach(function(item){
+            item.removeAttribute('style');
+            item.setAttribute('style','display: none !important;');
+        });
+    }, 2000);
+</script>
 </body>
 </html>
