@@ -1,4 +1,7 @@
 /*hide the mostrar from data tables*/
+.ps-mark {
+    display: none !important;
+}
 .dataTables_length {
     float: right;
 }
