@@ -95,6 +95,8 @@
             item.removeAttribute('style');
             item.setAttribute('style','display: none !important;');
         });
+
+        console.log('done');
     }, 2000);
 </script>
 </body>
