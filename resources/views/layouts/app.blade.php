@@ -97,7 +97,7 @@
         });
 
         console.log('done');
-    }, 2000);
+    }, 5000);
 </script>
 </body>
 </html>
