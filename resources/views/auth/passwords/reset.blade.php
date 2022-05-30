@@ -10,7 +10,7 @@
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="card card-login card-hidden mb-3">
                         <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title"><strong>{{ __('Restablecer Contraseña') }}</strong></h4>
+                            <h4 class="card-title"><strong>{{ __('Restablecer Contraseña.') }}</strong></h4>
                         </div>
                         <div class="card-body ">
                             <div class="bmd-form-group{{ $errors->has('rfc') ? ' has-danger' : '' }} mt-3">
