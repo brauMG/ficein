@@ -9,7 +9,7 @@
 
                     <div class="card card-login card-hidden mb-3">
                         <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title"><strong>{{ __('Olvide Mi Contraseña') }}</strong></h4>
+                            <h4 class="card-title"><strong>{{ __('Olvide mi contraseña') }}</strong></h4>
                         </div>
                         <div class="card-body">
                             @if (session('status'))
@@ -27,9 +27,9 @@
                             <div class="bmd-form-group{{ $errors->has('rfc') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">email</i>
-                  </span>
+                                      <span class="input-group-text">
+                                        <i class="material-icons">email</i>
+                                      </span>
                                     </div>
                                     <input type="text" name="rfc" class="form-control" placeholder="{{ __('RFC') }}" value="{{ old('rfc') }}" required>
                                 </div>

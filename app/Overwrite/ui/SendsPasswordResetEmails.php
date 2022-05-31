@@ -29,16 +29,23 @@ trait SendsPasswordResetEmails
     {
         $this->validateEmail($request);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
         $response = $this->broker()->sendResetLink(
-            $this->credentials($request)
+            $request->only('rfc')
         );
 
-        return $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($request, $response)
-                    : $this->sendResetLinkFailedResponse($request, $response);
+        if ($response === "passwords.sent") {
+            return back()->with('status', 'se envio un enlace al correo asociado');
+        }
+        else {
+            return view()->with('status', 'no se encontro un correo asociado al RFC ingresado');
+        }
+
+//        dd($response);
+//
+//        return $response ==
+//        Password::RESET_LINK_SENT
+//            ? $this->sendResetLinkResponse($response)
+//            : $this->sendResetLinkFailedResponse($request, $response);
     }
 
     /**
@@ -49,7 +56,7 @@ trait SendsPasswordResetEmails
      */
     protected function validateEmail(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $request->validate(['rfc' => 'required']);
     }
 
     /**
@@ -72,9 +79,10 @@ trait SendsPasswordResetEmails
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
+
         return $request->wantsJson()
-                    ? new JsonResponse(['message' => trans($response)], 200)
-                    : back()->with('status', trans($response));
+            ? new JsonResponse(['message' => trans($response)], 200)
+            : back()->with('status', trans($response));
     }
 
     /**
@@ -95,8 +103,8 @@ trait SendsPasswordResetEmails
         }
 
         return back()
-                ->withInput($request->only('email'))
-                ->withErrors(['email' => trans($response)]);
+            ->withInput($request->only('email'))
+            ->withErrors(['email' => trans($response)]);
     }
 
     /**

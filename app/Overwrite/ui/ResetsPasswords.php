@@ -29,7 +29,7 @@ trait ResetsPasswords
         $token = $request->route()->parameter('token');
 
         return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
+            ['token' => $token, 'rfc' => $request->rfc]
         );
     }
 
@@ -48,16 +48,16 @@ trait ResetsPasswords
         // database. Otherwise we will parse the error and return the response.
         $response = $this->broker()->reset(
             $this->credentials($request), function ($user, $password) {
-                $this->resetPassword($user, $password);
-            }
+            $this->resetPassword($user, $password);
+        }
         );
 
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $response == Password::PASSWORD_RESET
-                    ? $this->sendResetResponse($request, $response)
-                    : $this->sendResetFailedResponse($request, $response);
+            ? $this->sendResetResponse($request, $response)
+            : $this->sendResetFailedResponse($request, $response);
     }
 
     /**
@@ -69,7 +69,7 @@ trait ResetsPasswords
     {
         return [
             'token' => 'required',
-            'email' => 'required|email',
+            'rfc' => 'required',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }
@@ -93,7 +93,7 @@ trait ResetsPasswords
     protected function credentials(Request $request)
     {
         return $request->only(
-            'email', 'password', 'password_confirmation', 'token'
+            'rfc', 'password', 'password_confirmation', 'token'
         );
     }
 
@@ -143,7 +143,7 @@ trait ResetsPasswords
         }
 
         return redirect($this->redirectPath())
-                            ->with('status', trans($response));
+            ->with('status', trans($response));
     }
 
     /**
@@ -162,8 +162,8 @@ trait ResetsPasswords
         }
 
         return redirect()->back()
-                    ->withInput($request->only('email'))
-                    ->withErrors(['email' => trans($response)]);
+            ->withInput($request->only('email'))
+            ->withErrors(['email' => trans($response)]);
     }
 
     /**
