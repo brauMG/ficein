@@ -1,12 +1,22 @@
 @extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('Ficein')])
 
 @section('content')
-    <div class="container" style="height: auto; margin-top: 5%;">
+    <div class="container" style="height: auto;">
         @if(session('status'))
             <div class="alert alert-success" role="alert">
                 {{session('status')}}
             </div>
         @endif
+            <div class="row align-items-center">
+                <div class="row col-10 justify-content-center m-auto">
+                    <div class="card-login-info">
+                        <h4 class="login-info-header">La forma de accesar a tu información ha cambiado</h4>
+                        <h6 class="login-info-text">• Da click en "Restablecer mi contraseña" e ingresa tu RFC sin homoclave.</h6>
+                        <h6 class="login-info-text">• Posteriormente recibirás un correo al e-mail que tienes registrado con nosotros. Si no lo conoces, contáctanos.</h6>
+                        <h6 class="login-info-text">• Sigue el enlace contenido en el correo para confirmar tus datos y restablecer tu contraseña.</h6>
+                    </div>
+                </div>
+            </div>
         <div class="row align-items-center">
             <div class="row col-10 justify-content-center m-auto">
                 <div class="col-5 p-0 hide-logo-login" style="z-index: 9;">

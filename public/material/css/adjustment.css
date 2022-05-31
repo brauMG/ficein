@@ -1,3 +1,29 @@
+.card-login-info {
+    margin: 1%;
+    padding: 2%;
+    background-color: #3961ab;
+    border-radius: 12px;
+}
+h6.login-info-text {
+    font-weight: 300;
+    font-size: 12px;
+}
+h4.login-info-header {
+    font-weight: 400;
+    font-size: 16px;
+}
+@media (max-width: 768px) {
+    .card-login-info {
+        margin: 1% 0 3% 0;
+        padding: 3%;
+    }
+    h4.login-info-header {
+        font-size: 12px;
+    }
+    h6.login-info-text {
+        font-size: 10px;
+    }
+}
 /*hide the mostrar from data tables*/
 .dataTables_length {
     float: right;
