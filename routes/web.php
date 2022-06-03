@@ -11,6 +11,7 @@ use App\Http\Controllers\ConstanciasInversionesController;
 use App\Http\Controllers\CuentasCreditosController;
 use App\Http\Controllers\DividendosController;
 use App\Http\Controllers\InteresesController;
+use App\Http\Controllers\BulkSmsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth', 'admin'], function () {
     Route::get('/','App\Http\Controllers\HomeController@index');
+
+    //sms
+    Route::get('/administrador/bulksms', [BulkSmsController::class, 'index']);
+    Route::post('/administrador/send',[BulkSmsController::class, 'sendSms'])->name('SendSMS');
 
     // usuarios
     Route::get('/administrador/usuarios',[UsuariosController::class, 'index']);
