@@ -21,12 +21,12 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
                 @if(Auth::user()->type == 0)
-                <li class="nav-item{{ $activePage == 'SMS' ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ url('/administrador/bulksms') }}">
-                        <i class="material-icons text-white">send</i>
-                        <p>{{ __('Enviar Mensajes') }}</p>
-                    </a>
-                </li>
+{{--                <li class="nav-item{{ $activePage == 'SMS' ? ' active' : '' }}">--}}
+{{--                    <a class="nav-link" href="{{ url('/administrador/bulksms') }}">--}}
+{{--                        <i class="material-icons text-white">send</i>--}}
+{{--                        <p>{{ __('Enviar Mensajes') }}</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
                     <li class="nav-item{{ $activePage == 'Lista de Usuarios' ? ' active' : '' }}">
                         <a class="nav-link" href="{{ url('/administrador/usuarios') }}">
