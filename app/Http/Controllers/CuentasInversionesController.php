@@ -28,7 +28,7 @@ class CuentasInversionesController extends Controller
 
     public function index() {
 
-        $cuentas_inversiones = EstadosInversion::all();
+        $cuentas_inversiones = EstadosInversion::paginate(10000);
 
         return view('pages.administrador.cuentas_inversion.index', compact('cuentas_inversiones'));
     }
