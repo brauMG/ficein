@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth', 'admin'], function () {
 
     // cuentas de inversion
     Route::get('/administrador/cuentas_inversion',[CuentasInversionesController::class, 'index']);
+    Route::get('/administrador/cuentas_inversion/datatable',[CuentasInversionesController::class, 'getAdminData'])->name('admin-data');
     Route::post('/administrador/cuentas_inversion/verify',[CuentasInversionesController::class, 'verify'])->name('verificar_cuentas_inversiones');
 
     //cuentas de creditos
