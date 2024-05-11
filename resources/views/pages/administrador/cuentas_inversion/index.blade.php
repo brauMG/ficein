@@ -85,6 +85,7 @@
                 "processing": true,
                 "serverSide": true,
                 "responsive": true,
+                "paging": true,
                 "deferRender": true,
                 "ajax": "{{route('admin-data')}}",
                 "buttons": [

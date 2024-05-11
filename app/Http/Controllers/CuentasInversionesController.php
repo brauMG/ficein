@@ -42,7 +42,7 @@ class CuentasInversionesController extends Controller
 
     public function getAdminData()
     {
-        $cuentas_inversiones = EstadosInversion::with('client')->get();
+        $cuentas_inversiones = EstadosInversion::with('client')->select('estados_de_cuenta_inversiones.*', 'users.*');
 
         return DataTables::of($cuentas_inversiones)
             ->addColumn('full_name', function ($cuentas_inversiones) {
