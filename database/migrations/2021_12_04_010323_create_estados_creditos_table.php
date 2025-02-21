@@ -16,6 +16,7 @@ class CreateEstadosCreditosTable extends Migration
         Schema::create('estados_de_cuenta_creditos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('rfc');
+            $table->string('currency');
             $table->date('date');
             $table->string('file_pdf');
             $table->timestamps();

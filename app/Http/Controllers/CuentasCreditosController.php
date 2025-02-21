@@ -54,11 +54,12 @@ class CuentasCreditosController extends Controller
 
             if ($extension === 'pdf') {
                 $filename = pathinfo($file, PATHINFO_FILENAME);
-                $data = explode(';', $filename, 4);
+                $data = explode(';', $filename, 5);
                 $rfc = $data[0];
-                $day = $data[1];
-                $month = $data[2];
-                $year = $data[3];
+                $currency = $data[1];
+                $day = $data[2];
+                $month = $data[3];
+                $year = $data[4];
                 $file_pdf = $file;
 
                 $record_exist = EstadosCreditos::where('file_pdf', $file_pdf)->first();
@@ -66,6 +67,7 @@ class CuentasCreditosController extends Controller
                 if ($record_exist === null) {
                     $added_files [$i] = [
                         'rfc' => $rfc,
+                        'currency' => $currency,
                         'date' => $year . '-' . $month . '-' . $day,
                         'file_pdf' => $file_pdf,
                     ];
@@ -85,6 +87,7 @@ class CuentasCreditosController extends Controller
             else {
                 EstadosCreditos::create([
                     'rfc' => $added_file['rfc'],
+                    'currency' => $added_file['currency'],
                     'date' => $added_file['date'],
                     'file_pdf' => $added_file['file_pdf']
                 ]);

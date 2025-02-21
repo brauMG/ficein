@@ -60,6 +60,7 @@
                                     <th>Email del Cliente</th>
                                     <th>RFC</th>
                                     <th>Nombre del cliente</th>
+                                    <th>Divisa</th>
                                     <th>Mes</th>
                                     <th>Año</th>
                                     <th class="action-row">Descargar</th>
@@ -70,6 +71,7 @@
                                             <td>{{$credito->client->email}}<i class="material-icons plus">add_circle</i></td>
                                             <td>{{$credito->client->rfc}}</td>
                                             <td>{{$credito->client->name}} {{$credito->client->last_name}}</td>
+                                            <td>{{$credito->currency}}</td>
                                             <td>
                                                 @if(date('m', strtotime($credito->date)) === '01')
                                                     Enero
